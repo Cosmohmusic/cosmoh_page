@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COSMOH Music - Composer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4F46E5;
+      --secondary: #9333EA;
+      --background: #0A0F1A;
+      --text: #E5E7EB;
+      --neon-purple: #bf00ff;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0A0F1A 0%, #101624 100%);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+      background: rgba(10, 15, 26, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #4F46E5, #9333EA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    
+    .nav-links a:hover {
+      opacity: 1;
+    }
+    
+    .nav-links a.active {
+      opacity: 1;
+      position: relative;
+    }
+    
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #4F46E5, #9333EA);
+    }
+    
+    .hero {
+      min-height: 100vh;
+      padding: 0;
+      text-align: center;
+      display: none;
+    }
+    
+    .hero.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #4F46E5, #9333EA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      opacity: 0.8;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+    }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      margin: 0 auto 20px;
+      box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
+      display: block;
+    }
+    
+    .section {
+      padding: 60px 0;
+      min-height: 100vh;
+      display: none;
+    }
+    
+    .section.active {
+      display: block;
+      animation: fadeIn 0.5s forwards;
+    }
+    
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, #4F46E5, #9333EA);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* 포트폴리오 섹션 비디오 그리드 레이아웃 */
+    .videos-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    /* 비디오 컨테이너 업데이트 */
+    .video-container {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: scale(0.95);
+      position: relative;
+      z-index: 1;
+      background: rgba(20, 20, 35, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .video-container:hover {
+      transform: scale(1);
+      box-shadow: 0 15px 30px rgba(79, 70, 229, 0.4);
+      z-index: 2;
+      border-color: rgba(79, 70, 229, 0.4);
+    }
+    
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 30px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    #about .glass-card p {
+      text-align: left;
+    }
+    
+    /* 기술 및 툴 섹션은 중앙 정렬 유지 */
+    #about .glass-card .skills-list {
+      text-align: center;
+      justify-content: center;
+    }
+    
+    /* 연락처 섹션은 중앙 정렬 유지 */
+    #about .glass-card .social-links {
+      text-align: center;
+    }
+    
+    /* 프로필 영역은 중앙 정렬 유지 */
+    #about .glass-card div[style*="text-align: center"] {
+      text-align: center !important;
+    }
+    
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
+    }
+    
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .skill-tag {
+      background: rgba(79, 70, 229, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      transition: transform 0.3s;
+      border: 1px solid rgba(79, 70, 229, 0.3);
+    }
+    
+    .skill-tag:hover {
+      transform: translateY(-3px);
+      background: rgba(79, 70, 229, 0.3);
+    }
+    
+    .social-links {
+      margin-top: 20px;
+    }
+    
+    .social-links a, .social-links span {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    
+    .social-links a:hover {
+      color: var(--primary);
+    }
+    
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    .form-group select option {
+      color: black;
+      background-color: white;
+    }
+    
+    .form-group select option:checked {
+      color: white;
+      background-color: var(--secondary);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+      outline: none;
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .process-section {
+      margin-top: 60px;
+    }
+    
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .process-card {
+      position: relative;
+      padding-top: 30px;
+    }
+    
+    .process-number {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #4F46E5, #9333EA);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      z-index: 1;
+    }
+    
+    audio {
+      width: 100%;
+      margin-top: 15px;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      opacity: 0.6;
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 60px;
+    }
+    
+    /* 새로운 스타일 - 장르 태그를 위한 디자인 */
+    .genre-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(191, 0, 255, 0.3), rgba(147, 51, 234, 0.3));
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(191, 0, 255, 0.5);
+      box-shadow: 0 0 10px rgba(191, 0, 255, 0.5), 
+                  inset 0 0 8px rgba(191, 0, 255, 0.3);
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .genre-tag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(191, 0, 255, 0.7), 
+                 inset 0 0 12px rgba(191, 0, 255, 0.5);
+    }
+    
+    .genre-container {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    
+    .portfolio-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    
+    /* 비디오 카드 스타일 */
+    .video-card {
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s ease;
+    }
+    
+    .video-info {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 0 0 12px 12px;
+      padding: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: none;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+    
+    .video-container:hover .video-info {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(79, 70, 229, 0.4);
+    }
+    
+    .video-info h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 18px;
+      background: linear-gradient(90deg, #4F46E5, #9333EA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: left;
+    }
+    
+    /* 언어 선택 드롭다운 */
+    .language-selector {
+      margin-left: 20px;
+      position: relative;
+      font-size: 12px;
+    }
+    
+    .language-selector select {
+      appearance: none;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      color: white;
+      padding: 4px 25px 4px 28px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    
+    .language-selector select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
+    .language-selector select option {
+      background-color: white;
+      color: black;
+    }
+    
+    .language-selector::after {
+      content: '▼';
+      font-size: 8px;
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    
+    .language-flag {
+      position: absolute;
+      width: 16px;
+      height: 12px;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    
+    .language-option img {
+      width: 16px;
+      height: 12px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    
+    /* 폼 제출 버튼 컨테이너 */
+    .form-submit-container {
+      width: 100%;
+      padding-top: 10px;
+      min-height: 60px;
+    }
+    
+    /* PC용 레이아웃 */
+    @media (min-width: 992px) {
+      .videos-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      iframe {
+        height: 300px;
+      }
+    }
+    
+    /* 태블릿용 레이아웃 */
+    @media (min-width: 768px) and (max-width: 991px) {
+      iframe {
+        height: 400px;
+      }
+    }
+    
+    /* 모바일 반응형 */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .hero h2 {
+        font-size: 24px;
+      }
+      
+      .section-title {
+        font-size: 28px;
+      }
+      
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      /* 모바일용 텍스트 정렬 유지 (수정) */
+      #contact h3 {
+        text-align: left;
+      }
+      
+      #contact p {
+        text-align: left;
+      }
+      
+      #contact .form-group label {
+        text-align: left;
+      }
+      
+      #contact .process-card h4 {
+        text-align: left;
+      }
+      
+      #contact .process-card p {
+        text-align: left;
+      }
+      
+      iframe {
+        height: 250px;
+      }
+    }
+    
+    /* 페이지 전환 애니메이션 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">COSMOH Music</div>
+        <div style="display: flex; align-items: center;">
+          <div class="nav-links">
+            <a data-target="home" class="active" data-lang-ko="홈" data-lang-en="Home">홈</a>
+            <a data-target="portfolio" data-lang-ko="포트폴리오" data-lang-en="Portfolio">포트폴리오</a>
+            <a data-target="about" data-lang-ko="소개" data-lang-en="About">소개</a>
+            <a data-target="contact" data-lang-ko="의뢰" data-lang-en="Request">의뢰</a>
+          </div>
+          <div class="language-selector">
+            <img src="assests/images/kr.png" alt="국기" class="language-flag" id="currentFlag">
+           <select id="languageSelect">
+             <option value="ko" data-flag="assests/images/kr.png" data-flag-alt="한국 국기">한국어</option>
+             <option value="en" data-flag="assests/images/us.png" data-flag-alt="미국 국기">English</option>
+           </select>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- 홈 섹션 -->
+  <section id="home" class="hero active">
+    <div class="container">
+      <img src="/api/placeholder/300/300" alt="COSMOH 프로필" class="profile-img">
+      <h1>COSMOH</h1>
+      <h2 data-lang-ko="Composer" data-lang-en="Composer">Composer</h2>
+      <p data-lang-ko="몰입감 있는 게임 환경을 위한 오케스트라, 일렉트로닉, 앰비언트 음악을 작곡합니다. 게임 속 감동을 선사하는 음악으로 플레이어의 경험을 한층 더 풍부하게 만들어 드립니다." data-lang-en="I compose orchestral, electronic, and ambient music for immersive game environments. My music creates emotional impact that enriches the player's experience.">몰입감 있는 게임 환경을 위한 오케스트라, 일렉트로닉, 앰비언트 음악을 작곡합니다. 게임 속 감동을 선사하는 음악으로 플레이어의 경험을 한층 더 풍부하게 만들어 드립니다.</p>
+      <a class="btn" data-lang-ko="포트폴리오 보기" data-lang-en="View Portfolio">포트폴리오 보기</a>
+    </div>
+  </section>
+  
+  <!-- 포트폴리오 섹션 -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang-ko="Portfolio" data-lang-en="Portfolio">Portfolio</h2>
+      
+      <div class="videos-grid">
+        <!-- 첫 번째 비디오 -->
+        <div class="video-card">
+          <div class="video-container">
+            <iframe 
+              id="youtubeVideo1"
+              src="https://www.youtube.com/embed/94MxW2em34k" 
+              title="Ori and the Will of the Wisps 자작곡" 
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+            <div class="video-info">
+              <h3 data-lang-ko="Ori and the Will of the Wisps 자작곡" data-lang-en="Ori and the Will of the Wisps Original Composition">Ori and the Will of the Wisps 자작곡</h3>
+              <div class="genre-container">
+                <span class="genre-tag" data-lang-ko="몽환적" data-lang-en="Dreamy">몽환적</span>
+                <span class="genre-tag" data-lang-ko="슬픔" data-lang-en="Sad">슬픔</span>
+                <span class="genre-tag" data-lang-ko="스토리텔링" data-lang-en="Storytelling">스토리텔링</span>
+                <span class="genre-tag" data-lang-ko="신비로움" data-lang-en="Mysterious">신비로움</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 두 번째 비디오 -->
+        <div class="video-card">
+          <div class="video-container">
+            <iframe 
+              id="youtubeVideo2"
+              src="https://www.youtube.com/embed/GL6S-rrYj_Y" 
+              title="모여봐요 동물의 숲" 
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+            <div class="video-info">
+              <h3 data-lang-ko="모여봐요 동물의 숲" data-lang-en="Animal Crossing">모여봐요 동물의 숲</h3>
+              <div class="genre-container">
+                <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual">캐주얼</span>
+                <span class="genre-tag" data-lang-ko="귀여움" data-lang-en="Cute">귀여움</span>
+                <span class="genre-tag" data-lang-ko="심플" data-lang-en="Simple">심플</span>
+                <span class="genre-tag" data-lang-ko="아기자기함" data-lang-en="Charming">아기자기함</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 세 번째 비디오 -->
+        <div class="video-card">
+          <div class="video-container">
+            <iframe 
+              id="youtubeVideo3"
+              src="https://www.youtube.com/embed/WrYQp8GAjoY" 
+              title="초코보GP" 
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+            <div class="video-info">
+              <h3 data-lang-ko="초코보GP" data-lang-en="Chocobo GP">초코보GP</h3>
+              <div class="genre-container">
+                <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual">캐주얼</span>
+                <span class="genre-tag" data-lang-ko="레이싱" data-lang-en="Racing">레이싱</span>
+                <span class="genre-tag" data-lang-ko="신남" data-lang-en="Upbeat">신남</span>
+                <span class="genre-tag" data-lang-ko="기쁨" data-lang-en="Joyful">기쁨</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 네 번째 비디오 -->
+        <div class="video-card">
+          <div class="video-container">
+            <iframe 
+              id="youtubeVideo4"
+              src="https://www.youtube.com/embed/yAVUUxU9cMw" 
+              title="별의 커비 디스커버리" 
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+            <div class="video-info">
+              <h3 data-lang-ko="별의 커비 디스커버리" data-lang-en="Kirby's Discovery">별의 커비 디스커버리</h3>
+              <div class="genre-container">
+                <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual">캐주얼</span>
+                <span class="genre-tag" data-lang-ko="귀여움" data-lang-en="Cute">귀여움</span>
+                <span class="genre-tag" data-lang-ko="해변" data-lang-en="Beach">해변</span>
+                <span class="genre-tag" data-lang-ko="라틴" data-lang-en="Latin">라틴</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="portfolio-grid">
+        <div class="glass-card">
+          <h3 data-lang-ko="아케이드 퍼즐 게임 BGM" data-lang-en="Arcade Puzzle Game BGM">아케이드 퍼즐 게임 BGM</h3>
+          <div class="genre-container">
+            <span class="genre-tag" data-lang-ko="아케이드" data-lang-en="Arcade">아케이드</span>
+            <span class="genre-tag" data-lang-ko="퍼즐" data-lang-en="Puzzle">퍼즐</span>
+          </div>
+          <p data-lang-ko="경쾌하고 중독성 있는 아케이드 퍼즐 게임을 위한 BGM입니다. 8비트 사운드와 현대적인 신스웨이브를 결합했습니다." data-lang-en="An upbeat and addictive BGM for arcade puzzle games. It combines 8-bit sounds with modern synthwave.">경쾌하고 중독성 있는 아케이드 퍼즐 게임을 위한 BGM입니다. 8비트 사운드와 현대적인 신스웨이브를 결합했습니다.</p>
+          <audio controls src="/api/placeholder/400/320"></audio>
+        </div>
+        
+        <div class="glass-card">
+          <h3 data-lang-ko="공포 게임 앰비언스" data-lang-en="Horror Game Ambience">공포 게임 앰비언스</h3>
+          <div class="genre-container">
+            <span class="genre-tag" data-lang-ko="공포" data-lang-en="Horror">공포</span>
+            <span class="genre-tag" data-lang-ko="앰비언트" data-lang-en="Ambient">앰비언트</span>
+          </div>
+          <p data-lang-ko="긴장감 넘치는 공포 게임을 위한 앰비언트 사운드트랙입니다. 불안과 공포를 조성하는 다양한 사운드 디자인 기법을 활용했습니다." data-lang-en="An ambient soundtrack for tense horror games. Utilizes various sound design techniques to create anxiety and fear.">긴장감 넘치는 공포 게임을 위한 앰비언트 사운드트랙입니다. 불안과 공포를 조성하는 다양한 사운드 디자인 기법을 활용했습니다.</p>
+          <audio controls src="/api/placeholder/400/320"></audio>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 소개 섹션 -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang-ko="소개" data-lang-en="About">소개</h2>
+      
+      <div class="glass-card">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <img src="/api/placeholder/300/300" alt="COSMOH 프로필" class="profile-img">
+          <h3>COSMOH</h3>
+          <p style="text-align: center;" data-lang-ko="게임 음악을 전문적으로 작곡하는 아티스트" data-lang-en="A professional game music composer">게임 음악을 전문적으로 작곡하는 아티스트</p>
+        </div>
+        
+        <h3 data-lang-ko="안녕하세요!" data-lang-en="Hello!">안녕하세요!</h3>
+        <p data-lang-ko="저는 게임 음악 작곡가 COSMOH입니다. 오케스트라부터 일렉트로닉까지 다양한 장르의 음악을 작곡하며, 게임의 감성과 스토리텔링을 더욱 풍부하게 만들기 위해 노력합니다." data-lang-en="I am COSMOH, a game music composer. I compose music across various genres from orchestral to electronic, and I strive to enrich the emotions and storytelling of games.">저는 게임 음악 작곡가 COSMOH입니다. 오케스트라부터 일렉트로닉까지 다양한 장르의 음악을 작곡하며, 게임의 감성과 스토리텔링을 더욱 풍부하게 만들기 위해 노력합니다.</p>
+        <p data-lang-ko="게임 개발자와 긴밀하게 협업하여 게임의 비전에 맞는 최적의 사운드트랙을 만듭니다. 음악은 게임 경험의 핵심 요소라고 믿으며, 플레이어의 감정을 움직이는 사운드트랙을 만드는 것이 저의 목표입니다." data-lang-en="I work closely with game developers to create the optimal soundtrack that matches the vision of the game. I believe music is a core element of the gaming experience, and my goal is to create soundtracks that move players emotionally.">게임 개발자와 긴밀하게 협업하여 게임의 비전에 맞는 최적의 사운드트랙을 만듭니다. 음악은 게임 경험의 핵심 요소라고 믿으며, 플레이어의 감정을 움직이는 사운드트랙을 만드는 것이 저의 목표입니다.</p>
+      </div>
+      
+      <div class="glass-card">
+        <h3 data-lang-ko="기술 및 툴" data-lang-en="Skills & Tools">기술 및 툴</h3>
+        <div class="skills-list">
+          <span class="skill-tag">Cubase</span>
+          <span class="skill-tag">Commercial Music</span>
+          <span class="skill-tag">Orchestration</span>
+          <span class="skill-tag">Electronic Music</span>
+          <span class="skill-tag">Sound Design</span>
+          <span class="skill-tag">Mixing & Mastering</span>
+        </div>
+      </div>
+      
+      <div class="glass-card">
+        <h3 data-lang-ko="연락처" data-lang-en="Contact">연락처</h3>
+        <div class="social-links">
+          <span data-lang-ko="Email: pikaia556@gmail.com" data-lang-en="Email: pikaia556@gmail.com">Email: pikaia556@gmail.com</span>
+          <a href="https://twitter.com/cosmohmusic" target="_blank" data-lang-ko="Twitter" data-lang-en="Twitter">Twitter</a>
+          <a href="https://www.youtube.com/@cosmoh_music" target="_blank" data-lang-ko="YouTube" data-lang-en="YouTube">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 의뢰 섹션 -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang-ko="의뢰 및 문의" data-lang-en="Request & Inquiry">의뢰 및 문의</h2>
+      <p style="text-align: left; max-width: 600px; margin: 0 auto 40px;" data-lang-ko="프로젝트에 대해 이야기하고 싶으신가요? 아래 양식을 작성해 주시거나 이메일로 직접 연락해 주세요." data-lang-en="Want to talk about your project? Fill out the form below or contact me directly via email.">프로젝트에 대해 이야기하고 싶으신가요? 아래 양식을 작성해 주시거나 이메일로 직접 연락해 주세요.</p>
+      
+      <div class="glass-card">
+        <form class="contact-form" style="text-align: left;">
+          <div class="form-group">
+            <label for="name" style="text-align: left;" data-lang-ko="이름" data-lang-en="Name">이름</label>
+            <input type="text" id="name" name="name" placeholder="홍길동" data-lang-placeholder-ko="홍길동" data-lang-placeholder-en="John Doe">
+          </div>
+          
+          <div class="form-group">
+            <label for="email" style="text-align: left;" data-lang-ko="이메일" data-lang-en="Email">이메일</label>
+            <input type="email" id="email" name="email" value="pikaia556@gmail.com" placeholder="example@email.com">
+          </div>
+          
+          <div class="form-group">
+            <label for="project" style="text-align: left;" data-lang-ko="프로젝트 유형" data-lang-en="Project Type">프로젝트 유형</label>
+            <select id="project" name="project">
+              <option value="mobile" data-lang-ko="모바일 게임" data-lang-en="Mobile Game">모바일 게임</option>
+              <option value="pc" data-lang-ko="PC/콘솔 게임" data-lang-en="PC/Console Game">PC/콘솔 게임</option>
+              <option value="ad" data-lang-ko="광고음악" data-lang-en="Ad Music">광고음악</option>
+              <option value="sound_design" data-lang-ko="사운드디자인" data-lang-en="Sound Design">사운드디자인</option>
+              <option value="other" data-lang-ko="기타" data-lang-en="Other">기타</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message" style="text-align: left;" data-lang-ko="메시지" data-lang-en="Message">메시지</label>
+            <textarea id="message" name="message" placeholder="프로젝트에 대해 알려주세요. 게임 장르, 필요한 음악 스타일, 일정 등을 포함해 주시면 좋습니다." data-lang-placeholder-ko="프로젝트에 대해 알려주세요. 게임 장르, 필요한 음악 스타일, 일정 등을 포함해 주시면 좋습니다." data-lang-placeholder-en="Tell me about your project. It's helpful to include game genre, music style needed, and timeline."></textarea>
+          </div>
+          
+          <div class="form-submit-container">
+            <button type="submit" class="btn" data-lang-ko="보내기" data-lang-en="Send">보내기</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="process-section">
+        <h3 style="text-align: left; margin-bottom: 30px;" data-lang-ko="협업 프로세스" data-lang-en="Collaboration Process">협업 프로세스</h3>
+        <div class="process-grid">
+          <div class="glass-card process-card">
+            <div class="process-number">1</div>
+            <h4 style="text-align: left;" data-lang-ko="콘셉트 논의" data-lang-en="Concept Discussion">콘셉트 논의</h4>
+            <p data-lang-ko="게임의 분위기와 필요한 음악 스타일에 대해 논의합니다. 게임의 스토리와 감성에 맞는 음악 방향을 설정합니다." data-lang-en="We discuss the game's atmosphere and the required music style. We set a musical direction that matches the game's story and emotions.">게임의 분위기와 필요한 음악 스타일에 대해 논의합니다. 게임의 스토리와 감성에 맞는 음악 방향을 설정합니다.</p>
+          </div>
+          
+          <div class="glass-card process-card">
+            <div class="process-number">2</div>
+            <h4 style="text-align: left;" data-lang-ko="데모 작곡" data-lang-en="Demo Composition">데모 작곡</h4>
+            <p data-lang-ko="초기 버전을 작곡하고 피드백을 기반으로 수정합니다. 게임 개발 팀과 긴밀하게 소통하며 음악을 발전시킵니다." data-lang-en="I compose an initial version and revise based on feedback. I develop the music through close communication with the game development team.">초기 버전을 작곡하고 피드백을 기반으로 수정합니다. 게임 개발 팀과 긴밀하게 소통하며 음악을 발전시킵니다.</p>
+          </div>
+          
+          <div class="glass-card process-card">
+            <div class="process-number">3</div>
+            <h4 style="text-align: left;" data-lang-ko="최종 납품" data-lang-en="Final Delivery">최종 납품</h4>
+            <p data-lang-ko="완성된 트랙을 제공합니다. 게임에 완벽하게 통합될 수 있도록 지원합니다." data-lang-en="I provide the completed tracks. I offer support to ensure perfect integration into your game.">완성된 트랙을 제공합니다. 게임에 완벽하게 통합될 수 있도록 지원합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="container">
+      <p>© 2025 COSMOH Music. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 언어 변환 기능
+      const languageSelect = document.getElementById('languageSelect');
+      const currentFlag = document.getElementById('currentFlag');
+      let currentLanguage = 'ko'; // 기본 언어는 한국어
+      
+      // 초기 국기 설정
+      updateFlag('ko');
+      
+      // 언어 선택 이벤트 리스너
+      languageSelect.addEventListener('change', function() {
+        currentLanguage = this.value;
+        updateLanguage();
+        updateFlag(currentLanguage);
+      });
+      
+      // 국기 업데이트 함수
+      function updateFlag(lang) {
+        const selectedOption = languageSelect.querySelector(`option[value="${lang}"]`);
+        if (selectedOption) {
+          currentFlag.src = selectedOption.getAttribute('data-flag');
+          currentFlag.alt = selectedOption.getAttribute('data-flag-alt');
+        }
+      }
+      
+      // 언어 업데이트 함수
+      function updateLanguage() {
+        // data-lang-ko 또는 data-lang-en 속성을 가진 모든 요소 찾기
+        const elements = document.querySelectorAll(`[data-lang-${currentLanguage}]`);
+        
+        // 각 요소의 내용을 해당 언어로 변경
+        elements.forEach(el => {
+          const langText = el.getAttribute(`data-lang-${currentLanguage}`);
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            if (el.hasAttribute(`data-lang-placeholder-${currentLanguage}`)) {
+              el.placeholder = el.getAttribute(`data-lang-placeholder-${currentLanguage}`);
+            }
+          } else {
+            el.textContent = langText;
+          }
+        });
+        
+        // 옵션 요소들을 위한 특별 처리
+        const options = document.querySelectorAll('option[data-lang-' + currentLanguage + ']');
+        options.forEach(option => {
+          option.textContent = option.getAttribute('data-lang-' + currentLanguage);
+        });
+      }
+      
+      // 모든 비디오 ID를 배열로 관리
+      const videoIds = ['youtubeVideo1', 'youtubeVideo2', 'youtubeVideo3', 'youtubeVideo4'];
+      
+      // YouTube 영상 제어 함수
+      function stopAllYoutubeVideos() {
+        videoIds.forEach(id => {
+          const iframe = document.getElementById(id);
+          if (iframe) {
+            // 현재 src 값을 가져와서 동일한 URL로 다시 설정하면 영상이 정지됨
+            const currentSrc = iframe.src;
+            iframe.src = currentSrc;
+          }
+        });
+      }
+      
+      // 비디오 컨테이너에 호버 효과 추가
+      document.querySelectorAll('.video-container').forEach(container => {
+        container.addEventListener('mouseenter', function() {
+          this.style.zIndex = '10';
+        });
+        
+        container.addEventListener('mouseleave', function() {
+          this.style.zIndex = '1';
+        });
+      });
+      
+      // 네비게이션 링크 클릭 이벤트 처리
+      document.querySelectorAll('.nav-links a').forEach(navLink => {
+        navLink.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-target');
+          
+          // 현재 활성화된 섹션이 포트폴리오이고, 다른 섹션으로 이동하는 경우 영상 정지
+          if (document.getElementById('portfolio').classList.contains('active') && targetId !== 'portfolio') {
+            stopAllYoutubeVideos();
+          }
+          
+          // 모든 섹션 숨기기
+          document.querySelectorAll('.section, #home').forEach(section => {
+            section.classList.remove('active');
+          });
+          
+          // 선택한 섹션만 표시
+          document.getElementById(targetId).classList.add('active');
+          
+          // 네비게이션 링크 활성화 상태 업데이트
+          document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+          });
+          this.classList.add('active');
+        });
+      });
+      
+      // 포트폴리오 버튼 클릭 이벤트
+      document.querySelector('.hero .btn').addEventListener('click', function() {
+        // 모든 섹션 비활성화
+        document.querySelectorAll('.section, #home').forEach(section => {
+          section.classList.remove('active');
+        });
+        
+        // 포트폴리오 섹션 활성화
+        document.getElementById('portfolio').classList.add('active');
+        
+        // 네비게이션 링크 업데이트
+        document.querySelectorAll('.nav-links a').forEach(link => {
+          link.classList.remove('active');
+        });
+        document.querySelector('.nav-links a[data-target="portfolio"]').classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
