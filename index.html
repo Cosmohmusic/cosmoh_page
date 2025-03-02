@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COSMOH music - Composer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Gugi&family=Do+Hyeon&family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- EmailJS Library -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <style>
     :root {
       --primary: #4F46E5;
@@ -203,6 +205,11 @@
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
     }
+    .btn.loading {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    
     
     .profile-img {
       width: 180px; /* 프로필 이미지 크기 증가 */
@@ -951,6 +958,16 @@ body.lang-ja .audio-info p {
     margin-bottom: 30px !important;
   }
 }
+.error-message {
+      color: #ff4d4d;
+      margin-top: 10px;
+      display: none;
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: rgba(255, 77, 77, 0.1);
+      border: 1px solid rgba(255, 77, 77, 0.3);
+    }
   </style>
 </head>
 <body class="lang-ko">
@@ -984,9 +1001,9 @@ body.lang-ja .audio-info p {
       <img src="assests/images/Profile_image.png" alt="COSMOH 프로필" class="profile-img">
       <h1 class="cosmoh-title">COSMOH</h1>
       <h2 class="cosmoh-title" data-lang-ko="Composer" data-lang-en="Composer" data-lang-ja="コンポーザー">Composer</h2>
-      <p data-lang-ko="몰입감 있는 게임 환경을 위한 오케스트라, 일렉트로닉, 앰비언트 음악을 작곡합니다. 게임 속 감동을 선사하는 음악으로 플레이어의 경험을 한층 더 풍부하게 만들어 드립니다." 
-         data-lang-en="I compose orchestral, electronic, and ambient music for immersive game environments. My music creates emotional impact that enriches the player's experience."
-         data-lang-ja="没入感のあるゲーム環境のためのオーケストラ、エレクトロニック、アンビエント音楽を作曲します。ゲーム内の感動を与える音楽でプレイヤーの体験をより豊かにします。">몰입감 있는 게임 환경을 위한 오케스트라, 일렉트로닉, 앰비언트 음악을 작곡합니다. 게임 속 감동을 선사하는 음악으로 플레이어의 경험을 한층 더 풍부하게 만들어 드립니다.</p>
+      <p data-lang-ko="몰입감 있는 게임 환경을 위한 오케스트라, 일렉트로닉, 앰비언트 등 다양한 음악을 작곡합니다. 게임 속 감동을 선사하는 음악으로 플레이어의 경험을 한층 더 풍부하게 만들어 드립니다." 
+         data-lang-en="I compose a variety of music, including orchestral, electronic, and ambient, for an immersive gaming environment.<br>We enrich the player's experience with music that brings emotion to the game."
+         data-lang-ja="没入感のあるゲーム環境のためのオーケストラ、エレクトロニック、アンビエントなど様々な音楽を作曲します。">몰입감 있는 게임 환경을 위한 오케스트라, 일렉트로닉, 앰비언트 등 다양한 음악을 작곡합니다.<br>게임 속 감동을 선사하는 음악으로 플레이어의 경험을 한층 더 풍부하게 만들어 드립니다.</p>
       <a class="btn" data-lang-ko="포트폴리오 보기" data-lang-en="View Portfolio" data-lang-ja="ポートフォリオを見る">포트폴리오 보기</a>
     </div>
   </section>
@@ -1011,6 +1028,11 @@ body.lang-ja .audio-info p {
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // EmailJS initialization
+      (function() {
+        // Replace "your_user_id" with your actual EmailJS user ID
+        emailjs.init("eEo4Dtv1mgtB5g48Y");
+      })();
       // 우클릭 방지
       document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
@@ -1163,52 +1185,71 @@ body.lang-ja .audio-info p {
       const messagePopup = document.getElementById('messagePopup');
       const popupOverlay = document.getElementById('popupOverlay');
       const popupClose = document.getElementById('popupClose');
+      const submitButton = document.getElementById('submitBtn');
+      const errorMessage = document.getElementById('errorMessage');
       
       contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // 실제 이메일 발송을 위한 코드 (여기에서는 시뮬레이션)
+                // Show loading state
+                const originalButtonText = submitButton.textContent;
+        const loadingText = submitButton.getAttribute(`data-lang-loading-${currentLanguage}`) || "Sending...";
+        submitButton.textContent = loadingText;
+        submitButton.disabled = true;
+        submitButton.classList.add('loading');
+        errorMessage.style.display = 'none';
+        
+        // Get form data
         const formData = new FormData(contactForm);
         const name = formData.get('name');
         const email = formData.get('email');
         const phone = formData.get('phone');
-        const project = formData.get('project');
+        const projectType = formData.get('project');
         const message = formData.get('message');
         
-        // 이메일 발송 API를 호출하는 코드가 들어갈 위치
-        // 여기서는 간단히 팝업을 보여주는 것으로 시뮬레이션
+        // Get the project type label (not just the value)
+        const projectSelect = document.getElementById('project');
+        const selectedOption = projectSelect.options[projectSelect.selectedIndex];
+        const projectTypeLabel = selectedOption.textContent;
         
-        // 실제 구현에서는 아래와 같은 코드를 사용할 수 있습니다
-        /*
-        fetch('https://your-email-api-endpoint.com/send', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            phone,
-            project,
-            message
-          }),
-        })
-        .then(response => response.json())
-        .then(data => {
-          // 성공 시 팝업 표시
-          showPopup();
-          contactForm.reset();
-        })
-        .catch(error => {
-          // 에러 처리
-          console.error('Error:', error);
-          alert('메시지 발송 중 오류가 발생했습니다. 다시 시도해주세요.');
-        });
-        */
+        // Prepare the template parameters
+        const templateParams = {
+          from_name: name,
+          from_email: email,
+          phone_number: phone,
+          project_type: projectTypeLabel,
+          project_type_value: projectType,
+          message: message,
+          reply_to: email
+        };
         
-        // 시뮬레이션: 팝업 표시
-        showPopup();
-        contactForm.reset();
+        // Send the email using EmailJS
+        // Replace with your actual service ID and template ID
+        emailjs.send("pikaia556", "template_cl5pmsa", templateParams)
+          .then(function(response) {
+            console.log("SUCCESS!", response.status, response.text);
+            
+            // Reset form and show success popup
+            contactForm.reset();
+            showPopup();
+            
+            // Restore button state
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+            submitButton.classList.remove('loading');
+          })
+          .catch(function(error) {
+            console.error("FAILED...", error);
+            
+            // Show error message
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = errorMessage.getAttribute(`data-lang-${currentLanguage}`);
+            
+            // Restore button state
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+            submitButton.classList.remove('loading');
+          });
       });
       
       // 팝업 표시 함수
@@ -1226,13 +1267,16 @@ body.lang-ja .audio-info p {
       // 팝업 닫기 버튼 이벤트
       popupClose.addEventListener('click', closePopup);
       popupOverlay.addEventListener('click', closePopup);
+      
+      // Rest of your existing JavaScript code
+      // ...
     });
   </script>
 </body>
 </html>
   
-  <!-- 의뢰 섹션 -->
-  <section id="contact" class="section">
+   <!-- 의뢰 섹션 -->
+   <section id="contact" class="section">
     <div class="container">
       <h2 class="section-title" data-lang-ko="의뢰 및 문의" data-lang-en="Request & Inquiry" data-lang-ja="依頼と問い合わせ">의뢰 및 문의</h2>
       <p style="text-align: left; max-width: 700px; margin: 0 auto 40px; font-size: 20px;" 
@@ -1247,12 +1291,12 @@ body.lang-ja .audio-info p {
             <input type="text" id="name" name="name" placeholder="홍길동" 
                    data-lang-placeholder-ko="홍길동" 
                    data-lang-placeholder-en="John Doe"
-                   data-lang-placeholder-ja="山田太郎">
+                   data-lang-placeholder-ja="山田太郎" required>
           </div>
           
           <div class="form-group">
             <label for="email" style="text-align: left;" data-lang-ko="이메일" data-lang-en="Email" data-lang-ja="メール">이메일</label>
-            <input type="email" id="email" name="email" placeholder="example@email.com">
+            <input type="email" id="email" name="email" placeholder="example@email.com" required>
           </div>
           
           <div class="form-group">
@@ -1260,12 +1304,12 @@ body.lang-ja .audio-info p {
             <input type="tel" id="phone" name="phone" placeholder="010-1234-5678"
                    data-lang-placeholder-ko="010-1234-5678" 
                    data-lang-placeholder-en="+1 123-456-7890"
-                   data-lang-placeholder-ja="090-1234-5678">
+                   data-lang-placeholder-ja="090-1234-5678" required>
           </div>
           
           <div class="form-group">
             <label for="project" style="text-align: left;" data-lang-ko="프로젝트 유형" data-lang-en="Project Type" data-lang-ja="プロジェクトタイプ">프로젝트 유형</label>
-            <select id="project" name="project">
+            <select id="project" name="project" required>
               <option value="mobile" 
                       data-lang-ko="모바일 게임" 
                       data-lang-en="Mobile Game"
@@ -1298,17 +1342,26 @@ body.lang-ja .audio-info p {
                       placeholder="프로젝트에 대해 알려주세요. 게임 장르, 필요한 음악 스타일, 일정 등을 포함해 주시면 좋습니다." 
                       data-lang-placeholder-ko="프로젝트에 대해 알려주세요. 게임 장르, 필요한 음악 스타일, 일정 등을 포함해 주시면 좋습니다." 
                       data-lang-placeholder-en="Tell me about your project. It's helpful to include game genre, music style needed, and timeline."
-                      data-lang-placeholder-ja="プロジェクトについて教えてください。ゲームジャンル、必要な音楽スタイル、スケジュールなどを含めていただけると助かります。"></textarea>
+                      data-lang-placeholder-ja="プロジェクトについて教えてください。ゲームジャンル、必要な音楽スタイル、スケジュールなどを含めていただけると助かります。" required></textarea>
           </div>
           
           <div class="form-submit-container">
-            <button type="submit" class="btn" 
+            <button type="submit" class="btn" id="submitBtn"
                     data-lang-ko="보내기" 
                     data-lang-en="Send"
-                    data-lang-ja="送信">보내기</button>
+                    data-lang-ja="送信"
+                    data-lang-loading-ko="전송 중..."
+                    data-lang-loading-en="Sending..."
+                    data-lang-loading-ja="送信中...">보내기</button>
+            <div class="error-message" id="errorMessage"
+                 data-lang-ko="메시지 전송에 실패했습니다. 다시 시도해주세요."
+                 data-lang-en="Failed to send message. Please try again."
+                 data-lang-ja="メッセージの送信に失敗しました。もう一度お試しください。"></div>
           </div>
         </form>
       </div>
+
+      
       
       <div class="process-section">
         <h3 style="text-align: left; margin-bottom: 30px; font-size: 28px;" 
@@ -1451,7 +1504,7 @@ body.lang-ja .audio-info p {
     </div>
     
     <!-- 오리지널 게임 음악 섹션 -->
-    <h3 class="section-subtitle" data-lang-ko="오리지널 게임 음악" data-lang-en="Original Game Music" data-lang-ja="オリジナルゲーム音楽" style="text-align: center; margin-top: 70px; margin-bottom: 40px; font-size: 32px;">오리지널 게임 음악</h3>
+    <h3 class="section-subtitle" data-lang-ko="다양한 컨셉의 테마" data-lang-en="Various concept themes" data-lang-ja="様々なコンセプトのテーマ" style="text-align: center; margin-top: 70px; margin-bottom: 40px; font-size: 32px;">다양한 컨셉의 테마</h3>
     
     <!-- 오디오 카드 그리드 레이아웃 -->
     <div class="audio-grid">
@@ -1459,19 +1512,20 @@ body.lang-ja .audio-info p {
       <div class="audio-card glass-card">
         <div class="audio-card-content">
           <div class="album-art">
-            <img src="assests/images/album-fantasy.jpg" alt="판타지 어드벤처 앨범아트" class="album-img">
+            <img src="assests/images/albumart_a_shudder_of_fear.png" alt="전투 앨범아트" class="album-img">
           </div>
           <div class="audio-info">
-            <h3 data-lang-ko="판타지 어드벤처" data-lang-en="Fantasy Adventure" data-lang-ja="ファンタジーアドベンチャー">판타지 어드벤처</h3>
+            <h3 data-lang-ko="A shudder of fear" data-lang-en="A shudder of fear" data-lang-ja="A shudder of fear">A shudder of fear</h3>
             <div class="genre-container">
-              <span class="genre-tag" data-lang-ko="오케스트라" data-lang-en="Orchestral" data-lang-ja="オーケストラ">오케스트라</span>
-              <span class="genre-tag" data-lang-ko="모험" data-lang-en="Adventure" data-lang-ja="冒険">모험</span>
-              <span class="genre-tag" data-lang-ko="판타지" data-lang-en="Fantasy" data-lang-ja="ファンタジー">판타지</span>
+              <span class="genre-tag" data-lang-ko="전투" data-lang-en="battle" data-lang-ja="バトル">전투</span>
+              <span class="genre-tag" data-lang-ko="긴장감" data-lang-en="intense" data-lang-ja="緊張感">긴장감</span>
+              <span class="genre-tag" data-lang-ko="액션" data-lang-en="action" data-lang-ja="アクション">액션</span>
+              <span class="genre-tag" data-lang-ko="락" data-lang-en="Rock" data-lang-ja="ロック">락</span>
             </div>
-            <p data-lang-ko="장엄한 오케스트라와 합창이 어우러진 판타지 모험 게임을 위한 메인 테마입니다." 
-               data-lang-en="A main theme for fantasy adventure games featuring majestic orchestra and choir."
-               data-lang-ja="壮大なオーケストラと合唱が調和したファンタジーアドベンチャーゲームのメインテーマです。">장엄한 오케스트라와 합창이 어우러진 판타지 모험 게임을 위한 메인 테마입니다.</p>
-            <audio controls src="assests/audio/fantasy_adventure.mp3" class="audio-player"></audio>
+            <p data-lang-ko="1:1 액션 게임에서의 긴장감 있는는 메인 테마" 
+               data-lang-en="A suspenseful main theme in 1:1 action games"
+               data-lang-ja="1:1 アクションゲームでの緊張感あるはメインテーマ">1:1 액션 게임에서의 긴장감 있는는 메인 테마</p>
+            <audio controls src="assests/audio/5.-전투씬-BGM.mp3" class="audio-player"></audio>
           </div>
         </div>
       </div>
@@ -1480,19 +1534,20 @@ body.lang-ja .audio-info p {
       <div class="audio-card glass-card">
         <div class="audio-card-content">
           <div class="album-art">
-            <img src="assests/images/album-space.jpg" alt="우주 탐험 앨범아트" class="album-img">
+            <img src="assests/images/albumart_legacy_of_the_desert.png" alt="legacy of the desert 앨범아트" class="album-img">
           </div>
           <div class="audio-info">
-            <h3 data-lang-ko="우주 탐험" data-lang-en="Space Exploration" data-lang-ja="宇宙探検">우주 탐험</h3>
+            <h3 data-lang-ko="사막의 유산" data-lang-en="legacy of the desert" data-lang-ja="砂漠の遺産">사막의 유산산</h3>
             <div class="genre-container">
-              <span class="genre-tag" data-lang-ko="앰비언트" data-lang-en="Ambient" data-lang-ja="アンビエント">앰비언트</span>
-              <span class="genre-tag" data-lang-ko="일렉트로닉" data-lang-en="Electronic" data-lang-ja="エレクトロニック">일렉트로닉</span>
-              <span class="genre-tag" data-lang-ko="신비" data-lang-en="Mysterious" data-lang-ja="神秘的">신비</span>
+              <span class="genre-tag" data-lang-ko="중동" data-lang-en="middle east" data-lang-ja="中東">중동</span>
+              <span class="genre-tag" data-lang-ko="웅장함" data-lang-en="grandeur" data-lang-ja="壮大な">웅장함</span>
+              <span class="genre-tag" data-lang-ko="오케스트라" data-lang-en="Orchestra" data-lang-ja=" オーケストラ">오케스트라</span>
+              <span class="genre-tag" data-lang-ko="Sci-fi" data-lang-en="Sci-fi" data-lang-ja="サイファイ">Sci-fi</span>
             </div>
-            <p data-lang-ko="광활한 우주를 탐험하는 게임을 위한 신비로운 앰비언트 트랙입니다. 미지의 세계에 대한 호기심과 경이로움을 담았습니다." 
-               data-lang-en="A mysterious ambient track for space exploration games. Captures the curiosity and wonder of the unknown universe."
-               data-lang-ja="広大な宇宙を探検するゲームのための神秘的なアンビエントトラックです。未知の世界への好奇心と驚きを込めました。">광활한 우주를 탐험하는 게임을 위한 신비로운 앰비언트 트랙입니다. 미지의 세계에 대한 호기심과 경이로움을 담았습니다.</p>
-            <audio controls src="assests/audio/space_exploration.mp3" class="audio-player"></audio>
+            <p data-lang-ko="중동배경의 하이브리드와 오케스트라가 어우러진 테마" 
+               data-lang-en="A theme that combines a hybrid of a Middle Eastern background and an orchestra."
+               data-lang-ja="中東背景のハイブリッドとオーケストラが調和したテーマ">중동배경의 하이브리드와 오케스트라가 어우러진 테마 </p>
+            <audio controls src="assests/audio/6.-중동_사막-풍의-메인-타이틀-음악.mp3" class="audio-player"></audio>
           </div>
         </div>
       </div>
@@ -1501,19 +1556,19 @@ body.lang-ja .audio-info p {
       <div class="audio-card glass-card">
         <div class="audio-card-content">
           <div class="album-art">
-            <img src="assests/images/album-battle.jpg" alt="전투 테마 앨범아트" class="album-img">
+            <img src="assests/images/albumart_boss_battle.png" alt="Masked and Wild: D.D.D. 테마 앨범아트" class="album-img">
           </div>
           <div class="audio-info">
-            <h3 data-lang-ko="전투 테마" data-lang-en="Battle Theme" data-lang-ja="戦闘テーマ">전투 테마</h3>
+            <h3 data-lang-ko="Masked and Wild: D.D.D." data-lang-en="Masked and Wild: D.D.D." data-lang-ja="Masked and Wild: D.D.D.">Masked and Wild: D.D.D.</h3>
             <div class="genre-container">
-              <span class="genre-tag" data-lang-ko="에픽" data-lang-en="Epic" data-lang-ja="エピック">에픽</span>
+              <span class="genre-tag" data-lang-ko="귀여운" data-lang-en="Cute" data-lang-ja="かわいい">귀여운</span>
               <span class="genre-tag" data-lang-ko="오케스트라" data-lang-en="Orchestral" data-lang-ja="オーケストラ">오케스트라</span>
               <span class="genre-tag" data-lang-ko="긴박함" data-lang-en="Intense" data-lang-ja="緊迫感">긴박함</span>
             </div>
-            <p data-lang-ko="강렬한 타악기와 현악 앙상블이 특징인 보스 전투를 위한 BGM입니다. 긴장감과 서사적인 분위기를 조성합니다." 
-               data-lang-en="A BGM for boss battles featuring intense percussion and string ensemble. Creates tension and an epic atmosphere."
-               data-lang-ja="強烈な打楽器と弦楽アンサンブルが特徴のボス戦闘向けBGMです。緊張感と叙事的な雰囲気を醸し出します。">강렬한 타악기와 현악 앙상블이 특징인 보스 전투를 위한 BGM입니다. 긴장감과 서사적인 분위기를 조성합니다.</p>
-            <audio controls src="assests/audio/battle_theme.mp3" class="audio-player"></audio>
+            <p data-lang-ko="커비 와일드 DDD 보스를 생각하고 만든 테마. 강렬한 타악기와 브라스가 특징" 
+               data-lang-en="A theme created with Kirby Wild DDD boss in mind. Features strong percussion instruments and brass"
+               data-lang-ja="カービーワイルドDDDボスを考えて作ったテーマ。強烈な打楽器とブラスが特徴">커비 와일드 DDD 보스를 생각하고 만든 테마. 강렬한 타악기와 브라스가 특징</p>
+            <audio controls src="assests/audio/커비-보스전.mp3" class="audio-player"></audio>
           </div>
         </div>
       </div>
@@ -1522,50 +1577,25 @@ body.lang-ja .audio-info p {
       <div class="audio-card glass-card">
         <div class="audio-card-content">
           <div class="album-art">
-            <img src="assests/images/album-village.jpg" alt="평화로운 마을 앨범아트" class="album-img">
+            <img src="assests/images/albumart_run!.png" alt="Run! 앨범아트" class="album-img">
           </div>
           <div class="audio-info">
-            <h3 data-lang-ko="평화로운 마을" data-lang-en="Peaceful Village" data-lang-ja="平和な村">평화로운 마을</h3>
+            <h3 data-lang-ko="Run!" data-lang-en="Run!" data-lang-ja="Run!">Run!</h3>
             <div class="genre-container">
-              <span class="genre-tag" data-lang-ko="포크" data-lang-en="Folk" data-lang-ja="フォーク">포크</span>
-              <span class="genre-tag" data-lang-ko="편안함" data-lang-en="Relaxing" data-lang-ja="リラックス">편안함</span>
-              <span class="genre-tag" data-lang-ko="따뜻함" data-lang-en="Warm" data-lang-ja="温かみ">따뜻함</span>
+              <span class="genre-tag" data-lang-ko="신남" data-lang-en="excited" data-lang-ja="楽しい">신남</span>
+              <span class="genre-tag" data-lang-ko="일렉트로닉" data-lang-en="Electronic" data-lang-ja="エレクトロニック">일렉트로닉</span>
+              <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual" data-lang-ja="カジュアル">캐주얼</span>
+              <span class="genre-tag" data-lang-ko="칩튠" data-lang-en="Chiptune" data-lang-ja="
+              チップチューンチューン">칩튠</span>
             </div>
-            <p data-lang-ko="목가적인 마을과 안식처를 위한 차분하고 따뜻한 배경 음악입니다. 플루트와 어쿠스틱 기타의 조화로운 선율을 담았습니다." 
-               data-lang-en="A calm and warm background music for pastoral villages and safe havens. Features harmonious melodies of flute and acoustic guitar."
-               data-lang-ja="牧歌的な村と安息の地のための穏やかで温かい背景音楽です。フルートとアコースティックギターの調和のとれた旋律を盛り込みました。">목가적인 마을과 안식처를 위한 차분하고 따뜻한 배경 음악입니다. 플루트와 어쿠스틱 기타의 조화로운 선율을 담았습니다.</p>
-            <audio controls src="assests/audio/peaceful_village.mp3" class="audio-player"></audio>
+            <p data-lang-ko="주먹왕 랄프의 Sugar Rush 게임을 생각하고 만든 캐주얼 게임의 테마" 
+               data-lang-en="A casual game theme created with Wreck-It Ralph's Sugar Rush game in mind."
+               data-lang-ja="拳王ラルフのSugar Rushゲームを考えて作られたカジュアルゲームのテーマ">주먹왕 랄프의 Sugar Rush 게임을 생각하고 만든 캐주얼 게임의 테마</p>
+            <audio controls src="assests/audio/Run! (일렉트로닉,발랄한 스타일).wav" class="audio-player"></audio>
           </div>
         </div>
       </div>
     </div>
-    
-    <div class="portfolio-grid">
-      <div class="glass-card portfolio-card">
-        <h3 data-lang-ko="아케이드 퍼즐 게임 BGM" data-lang-en="Arcade Puzzle Game BGM" data-lang-ja="アーケードパズルゲームBGM">아케이드 퍼즐 게임 BGM</h3>
-        <div class="genre-container">
-          <span class="genre-tag" data-lang-ko="아케이드" data-lang-en="Arcade" data-lang-ja="アーケード">아케이드</span>
-          <span class="genre-tag" data-lang-ko="퍼즐" data-lang-en="Puzzle" data-lang-ja="パズル">퍼즐</span>
-        </div>
-        <p data-lang-ko="경쾌하고 중독성 있는 아케이드 퍼즐 게임을 위한 BGM입니다. 8비트 사운드와 현대적인 신스웨이브를 결합했습니다." 
-           data-lang-en="An upbeat and addictive BGM for arcade puzzle games. It combines 8-bit sounds with modern synthwave."
-           data-lang-ja="軽快で中毒性のあるアーケードパズルゲーム向けのBGMです。8ビットサウンドと現代的なシンセウェーブを組み合わせました。">경쾌하고 중독성 있는 아케이드 퍼즐 게임을 위한 BGM입니다. 8비트 사운드와 현대적인 신스웨이브를 결합했습니다.</p>
-        <audio controls src="assests/audio/puzzle_bgm.mp3"></audio>
-      </div>
-      
-      <div class="glass-card portfolio-card">
-        <h3 data-lang-ko="공포 게임 앰비언스" data-lang-en="Horror Game Ambience" data-lang-ja="ホラーゲームアンビエンス">공포 게임 앰비언스</h3>
-        <div class="genre-container">
-          <span class="genre-tag" data-lang-ko="공포" data-lang-en="Horror" data-lang-ja="ホラー">공포</span>
-          <span class="genre-tag" data-lang-ko="앰비언트" data-lang-en="Ambient" data-lang-ja="アンビエント">앰비언트</span>
-        </div>
-        <p data-lang-ko="긴장감 넘치는 공포 게임을 위한 앰비언트 사운드트랙입니다. 불안과 공포를 조성하는 다양한 사운드 디자인 기법을 활용했습니다." 
-           data-lang-en="An ambient soundtrack for tense horror games. Utilizes various sound design techniques to create anxiety and fear."
-           data-lang-ja="緊張感溢れるホラーゲームのためのアンビエントサウンドトラックです。不安と恐怖を作り出す様々なサウンドデザイン技法を活用しました。">긴장감 넘치는 공포 게임을 위한 앰비언트 사운드트랙입니다. 불안과 공포를 조성하는 다양한 사운드 디자인 기법을 활용했습니다.</p>
-        <audio controls src="assests/audio/horror_ambience.mp3"></audio>
-      </div>
-    </div>
-  </div>
 </section>
   
   <!-- 소개 섹션 -->
@@ -1584,12 +1614,13 @@ body.lang-ja .audio-info p {
         </div>
         
         <h3 data-lang-ko="안녕하세요!" data-lang-en="Hello!" data-lang-ja="こんにちは！">안녕하세요!</h3>
-        <p data-lang-ko="저는 게임 음악 작곡가 COSMOH입니다. 오케스트라부터 일렉트로닉까지 다양한 장르의 음악을 작곡하며, 게임의 감성과 스토리텔링을 더욱 풍부하게 만들기 위해 노력합니다." 
+        <p data-lang-ko="작곡가 COSMOH입니다. 오케스트라부터 일렉트로닉까지 다양한 장르의 게임 음악을 작곡하며, 게임의 감성과 스토리텔링을 더욱 풍부하게 만들기 위해 노력합니다." 
            data-lang-en="I am COSMOH, a game music composer. I compose music across various genres from orchestral to electronic, and I strive to enrich the emotions and storytelling of games."
            data-lang-ja="私はゲーム音楽作曲家のCOSMOHです。オーケストラからエレクトロニックまで様々なジャンルの音楽を作曲し、ゲームの感性とストーリーテリングをより豊かにするために努力しています。">저는 게임 음악 작곡가 COSMOH입니다. 오케스트라부터 일렉트로닉까지 다양한 장르의 음악을 작곡하며, 게임의 감성과 스토리텔링을 더욱 풍부하게 만들기 위해 노력합니다.</p>
         <p data-lang-ko="게임 개발자와 긴밀하게 협업하여 게임의 비전에 맞는 최적의 사운드트랙을 만듭니다. 음악은 게임 경험의 핵심 요소라고 믿으며, 플레이어의 감정을 움직이는 사운드트랙을 만드는 것이 저의 목표입니다." 
            data-lang-en="I work closely with game developers to create the optimal soundtrack that matches the vision of the game. I believe music is a core element of the gaming experience, and my goal is to create soundtracks that move players emotionally."
            data-lang-ja="ゲーム開発者と緊密に協力して、ゲームのビジョンに合った最適なサウンドトラックを作ります。音楽はゲーム体験の核心要素だと信じており、プレイヤーの感情を動かすサウンドトラックを作ることが私の目標です。">게임 개발자와 긴밀하게 협업하여 게임의 비전에 맞는 최적의 사운드트랙을 만듭니다. 음악은 게임 경험의 핵심 요소라고 믿으며, 플레이어의 감정을 움직이는 사운드트랙을 만드는 것이 저의 목표입니다.</p>
+           
       </div>
       
       <div class="glass-card">
