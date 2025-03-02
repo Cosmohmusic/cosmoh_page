@@ -784,6 +784,173 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+  /* 오디오 카드 관련 스타일 */
+.section-subtitle {
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+body.lang-ko .section-subtitle {
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+body.lang-en .section-subtitle {
+  font-family: 'Inter', sans-serif;
+}
+
+body.lang-ja .section-subtitle {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.section-subtitle::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #4F46E5, #9333EA);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.audio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 35px;
+  margin-bottom: 70px;
+}
+
+.audio-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  padding: 0;
+}
+
+.audio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(79, 70, 229, 0.3);
+}
+
+.audio-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.album-art {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 25px 25px 5px 25px;
+}
+
+.album-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(79, 70, 229, 0.3);
+  pointer-events: none; /* 이미지 우클릭 방지 */
+}
+
+.audio-card:hover .album-img {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.5);
+  border-color: rgba(79, 70, 229, 0.5);
+}
+
+.audio-info {
+  padding: 20px 25px 25px 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.audio-info h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: white;
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+body.lang-en .audio-info h3 {
+  font-family: 'Inter', sans-serif;
+}
+
+body.lang-ja .audio-info h3 {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.audio-info p {
+  margin-bottom: 20px;
+  font-size: 18px;
+  opacity: 0.9;
+  flex-grow: 1;
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+body.lang-en .audio-info p {
+  font-family: 'Inter', sans-serif;
+}
+
+body.lang-ja .audio-info p {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.audio-player {
+  width: 100%;
+  margin-top: auto;
+  height: 45px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 반응형 디자인 */
+@media (min-width: 992px) {
+  .audio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .audio-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .audio-card-content {
+    flex-direction: column;
+  }
+  
+  .album-art {
+    width: 100%;
+    padding: 20px 20px 0 20px;
+  }
+  
+  .album-img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .audio-info h3 {
+    font-size: 22px;
+  }
+  
+  .audio-info p {
+    font-size: 17px;
+  }
+  
+  .section-subtitle {
+    font-size: 28px !important;
+    margin-top: 50px !important;
+    margin-bottom: 30px !important;
+  }
+}
   </style>
 </head>
 <body class="lang-ko">
@@ -1187,129 +1354,219 @@
   </section>
   
   <!-- 포트폴리오 섹션 -->
-  <section id="portfolio" class="section">
-    <div class="container">
-      <h2 class="section-title" data-lang-ko="Portfolio" data-lang-en="Portfolio" data-lang-ja="ポートフォリオ">Portfolio</h2>
-      
-      <div class="videos-grid">
-        <!-- 첫 번째 비디오 -->
-        <div class="video-card">
-          <div class="video-container">
-            <iframe 
-              id="youtubeVideo1"
-              src="https://www.youtube.com/embed/94MxW2em34k" 
-              title="Ori and the Will of the Wisps 자작곡" 
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-            <div class="video-info">
-              <h3 data-lang-ko="Ori and the Will of the Wisps 자작곡" 
-                  data-lang-en="Ori and the Will of the Wisps Original Composition"
-                  data-lang-ja="オリとウィスパーの意志 オリジナル曲">Ori and the Will of the Wisps 자작곡</h3>
-              <div class="genre-container">
-                <span class="genre-tag" data-lang-ko="몽환적" data-lang-en="Dreamy" data-lang-ja="幻想的">몽환적</span>
-                <span class="genre-tag" data-lang-ko="슬픔" data-lang-en="Sad" data-lang-ja="悲しみ">슬픔</span>
-                <span class="genre-tag" data-lang-ko="스토리텔링" data-lang-en="Storytelling" data-lang-ja="ストーリーテリング">스토리텔링</span>
-                <span class="genre-tag" data-lang-ko="신비로움" data-lang-en="Mysterious" data-lang-ja="神秘的">신비로움</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- 두 번째 비디오 -->
-        <div class="video-card">
-          <div class="video-container">
-            <iframe 
-              id="youtubeVideo2"
-              src="https://www.youtube.com/embed/GL6S-rrYj_Y" 
-              title="모여봐요 동물의 숲" 
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-            <div class="video-info">
-              <h3 data-lang-ko="모여봐요 동물의 숲" data-lang-en="Animal Crossing" data-lang-ja="あつまれ どうぶつの森">모여봐요 동물의 숲</h3>
-              <div class="genre-container">
-                <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual" data-lang-ja="カジュアル">캐주얼</span>
-                <span class="genre-tag" data-lang-ko="귀여움" data-lang-en="Cute" data-lang-ja="かわいい">귀여움</span>
-                <span class="genre-tag" data-lang-ko="심플" data-lang-en="Simple" data-lang-ja="シンプル">심플</span>
-                <span class="genre-tag" data-lang-ko="아기자기함" data-lang-en="Charming" data-lang-ja="キュート">아기자기함</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- 세 번째 비디오 -->
-        <div class="video-card">
-          <div class="video-container">
-            <iframe 
-              id="youtubeVideo3"
-              src="https://www.youtube.com/embed/WrYQp8GAjoY" 
-              title="초코보GP" 
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-            <div class="video-info">
-              <h3 data-lang-ko="초코보GP" data-lang-en="Chocobo GP" data-lang-ja="チョコボGP">초코보GP</h3>
-              <div class="genre-container">
-                <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual" data-lang-ja="カジュアル">캐주얼</span>
-                <span class="genre-tag" data-lang-ko="레이싱" data-lang-en="Racing" data-lang-ja="レーシング">레이싱</span>
-                <span class="genre-tag" data-lang-ko="신남" data-lang-en="Upbeat" data-lang-ja="アップビート">신남</span>
-                <span class="genre-tag" data-lang-ko="기쁨" data-lang-en="Joyful" data-lang-ja="楽しい">기쁨</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- 네 번째 비디오 -->
-        <div class="video-card">
-          <div class="video-container">
-            <iframe 
-              id="youtubeVideo4"
-              src="https://www.youtube.com/embed/yAVUUxU9cMw" 
-              title="별의 커비 디스커버리" 
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-            <div class="video-info">
-              <h3 data-lang-ko="별의 커비 디스커버리" data-lang-en="Kirby's Discovery" data-lang-ja="星のカービィ ディスカバリー">별의 커비 디스커버리</h3>
-              <div class="genre-container">
-                <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual" data-lang-ja="カジュアル">캐주얼</span>
-                <span class="genre-tag" data-lang-ko="귀여움" data-lang-en="Cute" data-lang-ja="かわいい">귀여움</span>
-                <span class="genre-tag" data-lang-ko="해변" data-lang-en="Beach" data-lang-ja="ビーチ">해변</span>
-                <span class="genre-tag" data-lang-ko="라틴" data-lang-en="Latin" data-lang-ja="ラテン">라틴</span>
-              </div>
+<section id="portfolio" class="section">
+  <div class="container">
+    <h2 class="section-title" data-lang-ko="Portfolio" data-lang-en="Portfolio" data-lang-ja="ポートフォリオ">Portfolio</h2>
+    
+    <div class="videos-grid">
+      <!-- 첫 번째 비디오 -->
+      <div class="video-card">
+        <div class="video-container">
+          <iframe 
+            id="youtubeVideo1"
+            src="https://www.youtube.com/embed/94MxW2em34k" 
+            title="Ori and the Will of the Wisps 자작곡" 
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+          <div class="video-info">
+            <h3 data-lang-ko="Ori and the Will of the Wisps 자작곡" 
+                data-lang-en="Ori and the Will of the Wisps Original Composition"
+                data-lang-ja="オリとウィスパーの意志 オリジナル曲">Ori and the Will of the Wisps 자작곡</h3>
+            <div class="genre-container">
+              <span class="genre-tag" data-lang-ko="몽환적" data-lang-en="Dreamy" data-lang-ja="幻想的">몽환적</span>
+              <span class="genre-tag" data-lang-ko="슬픔" data-lang-en="Sad" data-lang-ja="悲しみ">슬픔</span>
+              <span class="genre-tag" data-lang-ko="스토리텔링" data-lang-en="Storytelling" data-lang-ja="ストーリーテリング">스토리텔링</span>
+              <span class="genre-tag" data-lang-ko="신비로움" data-lang-en="Mysterious" data-lang-ja="神秘的">신비로움</span>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="portfolio-grid">
-        <div class="glass-card portfolio-card">
-          <h3 data-lang-ko="아케이드 퍼즐 게임 BGM" data-lang-en="Arcade Puzzle Game BGM" data-lang-ja="アーケードパズルゲームBGM">아케이드 퍼즐 게임 BGM</h3>
-          <div class="genre-container">
-            <span class="genre-tag" data-lang-ko="아케이드" data-lang-en="Arcade" data-lang-ja="アーケード">아케이드</span>
-            <span class="genre-tag" data-lang-ko="퍼즐" data-lang-en="Puzzle" data-lang-ja="パズル">퍼즐</span>
+      <!-- 두 번째 비디오 -->
+      <div class="video-card">
+        <div class="video-container">
+          <iframe 
+            id="youtubeVideo2"
+            src="https://www.youtube.com/embed/GL6S-rrYj_Y" 
+            title="모여봐요 동물의 숲" 
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+          <div class="video-info">
+            <h3 data-lang-ko="모여봐요 동물의 숲" data-lang-en="Animal Crossing" data-lang-ja="あつまれ どうぶつの森">모여봐요 동물의 숲</h3>
+            <div class="genre-container">
+              <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual" data-lang-ja="カジュアル">캐주얼</span>
+              <span class="genre-tag" data-lang-ko="귀여움" data-lang-en="Cute" data-lang-ja="かわいい">귀여움</span>
+              <span class="genre-tag" data-lang-ko="심플" data-lang-en="Simple" data-lang-ja="シンプル">심플</span>
+              <span class="genre-tag" data-lang-ko="아기자기함" data-lang-en="Charming" data-lang-ja="キュート">아기자기함</span>
+            </div>
           </div>
-          <p data-lang-ko="경쾌하고 중독성 있는 아케이드 퍼즐 게임을 위한 BGM입니다. 8비트 사운드와 현대적인 신스웨이브를 결합했습니다." 
-             data-lang-en="An upbeat and addictive BGM for arcade puzzle games. It combines 8-bit sounds with modern synthwave."
-             data-lang-ja="軽快で中毒性のあるアーケードパズルゲーム向けのBGMです。8ビットサウンドと現代的なシンセウェーブを組み合わせました。">경쾌하고 중독성 있는 아케이드 퍼즐 게임을 위한 BGM입니다. 8비트 사운드와 현대적인 신스웨이브를 결합했습니다.</p>
-          <audio controls src="assests/audio/puzzle_bgm.mp3"></audio>
         </div>
-        
-        <div class="glass-card portfolio-card">
-          <h3 data-lang-ko="공포 게임 앰비언스" data-lang-en="Horror Game Ambience" data-lang-ja="ホラーゲームアンビエンス">공포 게임 앰비언스</h3>
-          <div class="genre-container">
-            <span class="genre-tag" data-lang-ko="공포" data-lang-en="Horror" data-lang-ja="ホラー">공포</span>
-            <span class="genre-tag" data-lang-ko="앰비언트" data-lang-en="Ambient" data-lang-ja="アンビエント">앰비언트</span>
+      </div>
+      
+      <!-- 세 번째 비디오 -->
+      <div class="video-card">
+        <div class="video-container">
+          <iframe 
+            id="youtubeVideo3"
+            src="https://www.youtube.com/embed/WrYQp8GAjoY" 
+            title="초코보GP" 
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+          <div class="video-info">
+            <h3 data-lang-ko="초코보GP" data-lang-en="Chocobo GP" data-lang-ja="チョコボGP">초코보GP</h3>
+            <div class="genre-container">
+              <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual" data-lang-ja="カジュアル">캐주얼</span>
+              <span class="genre-tag" data-lang-ko="레이싱" data-lang-en="Racing" data-lang-ja="レーシング">레이싱</span>
+              <span class="genre-tag" data-lang-ko="신남" data-lang-en="Upbeat" data-lang-ja="アップビート">신남</span>
+              <span class="genre-tag" data-lang-ko="기쁨" data-lang-en="Joyful" data-lang-ja="楽しい">기쁨</span>
+            </div>
           </div>
-          <p data-lang-ko="긴장감 넘치는 공포 게임을 위한 앰비언트 사운드트랙입니다. 불안과 공포를 조성하는 다양한 사운드 디자인 기법을 활용했습니다." 
-             data-lang-en="An ambient soundtrack for tense horror games. Utilizes various sound design techniques to create anxiety and fear."
-             data-lang-ja="緊張感溢れるホラーゲームのためのアンビエントサウンドトラックです。不安と恐怖を作り出す様々なサウンドデザイン技法を活用しました。">긴장감 넘치는 공포 게임을 위한 앰비언트 사운드트랙입니다. 불안과 공포를 조성하는 다양한 사운드 디자인 기법을 활용했습니다.</p>
-          <audio controls src="assests/audio/horror_ambience.mp3"></audio>
+        </div>
+      </div>
+      
+      <!-- 네 번째 비디오 -->
+      <div class="video-card">
+        <div class="video-container">
+          <iframe 
+            id="youtubeVideo4"
+            src="https://www.youtube.com/embed/yAVUUxU9cMw" 
+            title="별의 커비 디스커버리" 
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+          <div class="video-info">
+            <h3 data-lang-ko="별의 커비 디스커버리" data-lang-en="Kirby's Discovery" data-lang-ja="星のカービィ ディスカバリー">별의 커비 디스커버리</h3>
+            <div class="genre-container">
+              <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual" data-lang-ja="カジュアル">캐주얼</span>
+              <span class="genre-tag" data-lang-ko="귀여움" data-lang-en="Cute" data-lang-ja="かわいい">귀여움</span>
+              <span class="genre-tag" data-lang-ko="해변" data-lang-en="Beach" data-lang-ja="ビーチ">해변</span>
+              <span class="genre-tag" data-lang-ko="라틴" data-lang-en="Latin" data-lang-ja="ラテン">라틴</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+    
+    <!-- 오리지널 게임 음악 섹션 -->
+    <h3 class="section-subtitle" data-lang-ko="오리지널 게임 음악" data-lang-en="Original Game Music" data-lang-ja="オリジナルゲーム音楽" style="text-align: center; margin-top: 70px; margin-bottom: 40px; font-size: 32px;">오리지널 게임 음악</h3>
+    
+    <!-- 오디오 카드 그리드 레이아웃 -->
+    <div class="audio-grid">
+      <!-- 첫 번째 오디오 카드 -->
+      <div class="audio-card glass-card">
+        <div class="audio-card-content">
+          <div class="album-art">
+            <img src="assests/images/album-fantasy.jpg" alt="판타지 어드벤처 앨범아트" class="album-img">
+          </div>
+          <div class="audio-info">
+            <h3 data-lang-ko="판타지 어드벤처" data-lang-en="Fantasy Adventure" data-lang-ja="ファンタジーアドベンチャー">판타지 어드벤처</h3>
+            <div class="genre-container">
+              <span class="genre-tag" data-lang-ko="오케스트라" data-lang-en="Orchestral" data-lang-ja="オーケストラ">오케스트라</span>
+              <span class="genre-tag" data-lang-ko="모험" data-lang-en="Adventure" data-lang-ja="冒険">모험</span>
+              <span class="genre-tag" data-lang-ko="판타지" data-lang-en="Fantasy" data-lang-ja="ファンタジー">판타지</span>
+            </div>
+            <p data-lang-ko="장엄한 오케스트라와 합창이 어우러진 판타지 모험 게임을 위한 메인 테마입니다." 
+               data-lang-en="A main theme for fantasy adventure games featuring majestic orchestra and choir."
+               data-lang-ja="壮大なオーケストラと合唱が調和したファンタジーアドベンチャーゲームのメインテーマです。">장엄한 오케스트라와 합창이 어우러진 판타지 모험 게임을 위한 메인 테마입니다.</p>
+            <audio controls src="assests/audio/fantasy_adventure.mp3" class="audio-player"></audio>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 두 번째 오디오 카드 -->
+      <div class="audio-card glass-card">
+        <div class="audio-card-content">
+          <div class="album-art">
+            <img src="assests/images/album-space.jpg" alt="우주 탐험 앨범아트" class="album-img">
+          </div>
+          <div class="audio-info">
+            <h3 data-lang-ko="우주 탐험" data-lang-en="Space Exploration" data-lang-ja="宇宙探検">우주 탐험</h3>
+            <div class="genre-container">
+              <span class="genre-tag" data-lang-ko="앰비언트" data-lang-en="Ambient" data-lang-ja="アンビエント">앰비언트</span>
+              <span class="genre-tag" data-lang-ko="일렉트로닉" data-lang-en="Electronic" data-lang-ja="エレクトロニック">일렉트로닉</span>
+              <span class="genre-tag" data-lang-ko="신비" data-lang-en="Mysterious" data-lang-ja="神秘的">신비</span>
+            </div>
+            <p data-lang-ko="광활한 우주를 탐험하는 게임을 위한 신비로운 앰비언트 트랙입니다. 미지의 세계에 대한 호기심과 경이로움을 담았습니다." 
+               data-lang-en="A mysterious ambient track for space exploration games. Captures the curiosity and wonder of the unknown universe."
+               data-lang-ja="広大な宇宙を探検するゲームのための神秘的なアンビエントトラックです。未知の世界への好奇心と驚きを込めました。">광활한 우주를 탐험하는 게임을 위한 신비로운 앰비언트 트랙입니다. 미지의 세계에 대한 호기심과 경이로움을 담았습니다.</p>
+            <audio controls src="assests/audio/space_exploration.mp3" class="audio-player"></audio>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 세 번째 오디오 카드 -->
+      <div class="audio-card glass-card">
+        <div class="audio-card-content">
+          <div class="album-art">
+            <img src="assests/images/album-battle.jpg" alt="전투 테마 앨범아트" class="album-img">
+          </div>
+          <div class="audio-info">
+            <h3 data-lang-ko="전투 테마" data-lang-en="Battle Theme" data-lang-ja="戦闘テーマ">전투 테마</h3>
+            <div class="genre-container">
+              <span class="genre-tag" data-lang-ko="에픽" data-lang-en="Epic" data-lang-ja="エピック">에픽</span>
+              <span class="genre-tag" data-lang-ko="오케스트라" data-lang-en="Orchestral" data-lang-ja="オーケストラ">오케스트라</span>
+              <span class="genre-tag" data-lang-ko="긴박함" data-lang-en="Intense" data-lang-ja="緊迫感">긴박함</span>
+            </div>
+            <p data-lang-ko="강렬한 타악기와 현악 앙상블이 특징인 보스 전투를 위한 BGM입니다. 긴장감과 서사적인 분위기를 조성합니다." 
+               data-lang-en="A BGM for boss battles featuring intense percussion and string ensemble. Creates tension and an epic atmosphere."
+               data-lang-ja="強烈な打楽器と弦楽アンサンブルが特徴のボス戦闘向けBGMです。緊張感と叙事的な雰囲気を醸し出します。">강렬한 타악기와 현악 앙상블이 특징인 보스 전투를 위한 BGM입니다. 긴장감과 서사적인 분위기를 조성합니다.</p>
+            <audio controls src="assests/audio/battle_theme.mp3" class="audio-player"></audio>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 네 번째 오디오 카드 -->
+      <div class="audio-card glass-card">
+        <div class="audio-card-content">
+          <div class="album-art">
+            <img src="assests/images/album-village.jpg" alt="평화로운 마을 앨범아트" class="album-img">
+          </div>
+          <div class="audio-info">
+            <h3 data-lang-ko="평화로운 마을" data-lang-en="Peaceful Village" data-lang-ja="平和な村">평화로운 마을</h3>
+            <div class="genre-container">
+              <span class="genre-tag" data-lang-ko="포크" data-lang-en="Folk" data-lang-ja="フォーク">포크</span>
+              <span class="genre-tag" data-lang-ko="편안함" data-lang-en="Relaxing" data-lang-ja="リラックス">편안함</span>
+              <span class="genre-tag" data-lang-ko="따뜻함" data-lang-en="Warm" data-lang-ja="温かみ">따뜻함</span>
+            </div>
+            <p data-lang-ko="목가적인 마을과 안식처를 위한 차분하고 따뜻한 배경 음악입니다. 플루트와 어쿠스틱 기타의 조화로운 선율을 담았습니다." 
+               data-lang-en="A calm and warm background music for pastoral villages and safe havens. Features harmonious melodies of flute and acoustic guitar."
+               data-lang-ja="牧歌的な村と安息の地のための穏やかで温かい背景音楽です。フルートとアコースティックギターの調和のとれた旋律を盛り込みました。">목가적인 마을과 안식처를 위한 차분하고 따뜻한 배경 음악입니다. 플루트와 어쿠스틱 기타의 조화로운 선율을 담았습니다.</p>
+            <audio controls src="assests/audio/peaceful_village.mp3" class="audio-player"></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="portfolio-grid">
+      <div class="glass-card portfolio-card">
+        <h3 data-lang-ko="아케이드 퍼즐 게임 BGM" data-lang-en="Arcade Puzzle Game BGM" data-lang-ja="アーケードパズルゲームBGM">아케이드 퍼즐 게임 BGM</h3>
+        <div class="genre-container">
+          <span class="genre-tag" data-lang-ko="아케이드" data-lang-en="Arcade" data-lang-ja="アーケード">아케이드</span>
+          <span class="genre-tag" data-lang-ko="퍼즐" data-lang-en="Puzzle" data-lang-ja="パズル">퍼즐</span>
+        </div>
+        <p data-lang-ko="경쾌하고 중독성 있는 아케이드 퍼즐 게임을 위한 BGM입니다. 8비트 사운드와 현대적인 신스웨이브를 결합했습니다." 
+           data-lang-en="An upbeat and addictive BGM for arcade puzzle games. It combines 8-bit sounds with modern synthwave."
+           data-lang-ja="軽快で中毒性のあるアーケードパズルゲーム向けのBGMです。8ビットサウンドと現代的なシンセウェーブを組み合わせました。">경쾌하고 중독성 있는 아케이드 퍼즐 게임을 위한 BGM입니다. 8비트 사운드와 현대적인 신스웨이브를 결합했습니다.</p>
+        <audio controls src="assests/audio/puzzle_bgm.mp3"></audio>
+      </div>
+      
+      <div class="glass-card portfolio-card">
+        <h3 data-lang-ko="공포 게임 앰비언스" data-lang-en="Horror Game Ambience" data-lang-ja="ホラーゲームアンビエンス">공포 게임 앰비언스</h3>
+        <div class="genre-container">
+          <span class="genre-tag" data-lang-ko="공포" data-lang-en="Horror" data-lang-ja="ホラー">공포</span>
+          <span class="genre-tag" data-lang-ko="앰비언트" data-lang-en="Ambient" data-lang-ja="アンビエント">앰비언트</span>
+        </div>
+        <p data-lang-ko="긴장감 넘치는 공포 게임을 위한 앰비언트 사운드트랙입니다. 불안과 공포를 조성하는 다양한 사운드 디자인 기법을 활용했습니다." 
+           data-lang-en="An ambient soundtrack for tense horror games. Utilizes various sound design techniques to create anxiety and fear."
+           data-lang-ja="緊張感溢れるホラーゲームのためのアンビエントサウンドトラックです。不安と恐怖を作り出す様々なサウンドデザイン技法を活用しました。">긴장감 넘치는 공포 게임을 위한 앰비언트 사운드트랙입니다. 불안과 공포를 조성하는 다양한 사운드 디자인 기법을 활용했습니다.</p>
+        <audio controls src="assests/audio/horror_ambience.mp3"></audio>
+      </div>
+    </div>
+  </div>
+</section>
   
   <!-- 소개 섹션 -->
   <section id="about" class="section">
