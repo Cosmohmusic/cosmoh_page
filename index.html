@@ -387,7 +387,33 @@
       max-width: 680px; /* 넓힘 */
       margin: 0 auto;
     }
-    
+    .contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-button:hover {
+  background-color: rgba(79, 70, 229, 0.2);
+  border-color: rgba(79, 70, 229, 0.5);
+  transform: translateY(-3px);
+}
     .form-group {
       margin-bottom: 25px; /* 간격 증가 */
     }
@@ -638,6 +664,7 @@
       width: 100%;
       padding-top: 15px; /* 여백 증가 */
       min-height: 70px; /* 크기 증가 */
+      text-align: center;
     }
     
     /* 팝업 스타일 */
@@ -1308,11 +1335,12 @@ body.lang-ja .audio-info p {
 </html>
   
    <!-- 의뢰 섹션 -->
+
    <section id="contact" class="section">
     <div class="container">
       <h2 class="section-title" data-lang-ko="의뢰 및 문의" data-lang-en="Request & Inquiry" data-lang-ja="依頼と問い合わせ">의뢰 및 문의</h2>
-      <p style="text-align: left; max-width: 700px; margin: 0 auto 40px; font-size: 20px;" 
-         data-lang-ko="프로젝트에 대해 이야기하고 싶으신가요? 아래 양식을 작성해 주시거나 이메일로 직접 연락해 주세요." 
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; font-size: 20px;" 
+         data-lang-ko="프로젝트에 대해 이야기하고 싶으신가요?<br>아래 양식을 작성해 주시거나 이메일 혹은 카카오톡으로 직접 연락해 주세요." 
          data-lang-en="Want to talk about your project? Fill out the form below or contact me directly via email."
          data-lang-ja="プロジェクトについて話し合いたいですか？以下のフォームに記入するか、メールで直接連絡してください。">프로젝트에 대해 이야기하고 싶으신가요? 아래 양식을 작성해 주시거나 이메일로 직접 연락해 주세요.</p>
       
@@ -1332,7 +1360,7 @@ body.lang-ja .audio-info p {
           </div>
           
           <div class="form-group">
-            <label for="phone" style="text-align: left;" data-lang-ko="연락처" data-lang-en="Phone" data-lang-ja="電話番号">연락처</label>
+            <label for="phone" style="text-align: left;" data-lang-ko="SNS" data-lang-en="Contact" data-lang-ja="ソーシャル">SNS</label>
             <input type="tel" id="phone" name="phone" placeholder="010-1234-5678"
                    data-lang-placeholder-ko="010-1234-5678" 
                    data-lang-placeholder-en="+1 123-456-7890"
@@ -1377,6 +1405,7 @@ body.lang-ja .audio-info p {
                       data-lang-placeholder-ja="プロジェクトについて教えてください。ゲームジャンル、必要な音楽スタイル、スケジュールなどを含めていただけると助かります。" required></textarea>
           </div>
           
+          
           <div class="form-submit-container">
             <button type="submit" class="btn" id="submitBtn"
                     data-lang-ko="보내기" 
@@ -1384,11 +1413,17 @@ body.lang-ja .audio-info p {
                     data-lang-ja="送信"
                     data-lang-loading-ko="전송 중..."
                     data-lang-loading-en="Sending..."
-                    data-lang-loading-ja="送信中...">보내기</button>
+                    data-lang-loading-ja="送信中...">보내기</button>  
             <div class="error-message" id="errorMessage"
                  data-lang-ko="메시지 전송에 실패했습니다. 다시 시도해주세요."
                  data-lang-en="Failed to send message. Please try again."
                  data-lang-ja="メッセージの送信に失敗しました。もう一度お試しください。"></div>
+                 <div class="contact-buttons">
+                  <a href="https://open.kakao.com/o/COSMOH" class="contact-button">
+                    <img src="assests/images/icon_kakaotalk.png" alt="카카오톡">
+                    <span data-lang-ko="카카오톡으로 문의하기" data-lang-en="Contact via KakaoTalk" data-lang-ja="カカオトークで問い合わせる">카카오톡으로 문의하기</span>
+                  </a>
+                </div>
           </div>
         </form>
       </div>
@@ -1684,7 +1719,7 @@ body.lang-ja .audio-info p {
       </div>
       
       <div class="glass-card">
-        <h3 data-lang-ko="연락처" data-lang-en="Contact" data-lang-ja="連絡先">연락처</h3>
+        <h3 data-lang-ko="SNS" data-lang-en="Contact" data-lang-ja="ソーシャル">SNS</h3>
         <div class="social-links">
           
           <a href="https://www.youtube.com/@cosmoh_music" target="_blank" title="YouTube">
