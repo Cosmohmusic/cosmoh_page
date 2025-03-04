@@ -1,0 +1,158 @@
+/* animations.css - 애니메이션 관련 스타일 */
+
+/* 페이드 인 애니메이션 */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* 페이드 아웃 애니메이션 */
+@keyframes fadeOut {
+  from { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+  to { 
+    opacity: 0; 
+    transform: translateY(-20px); 
+  }
+}
+
+/* 바운스 애니메이션 */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-5px) translateX(-50%);
+  }
+}
+
+/* 페이드 인 애니메이션 (반복) */
+@keyframes fadeInPulse {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 섹션 애니메이션 */
+.section.entering {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.section.active {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeIn 0.5s forwards;
+}
+
+.section.exiting {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 홈 스크롤 화살표 애니메이션 */
+.home-scroll-arrow span {
+  animation: fadeInPulse 1.5s infinite alternate;
+}
+
+.home-scroll-arrow span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.home-scroll-arrow span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.home-scroll-indicator {
+  animation: bounce 2s infinite;
+}
+
+/* 버튼 호버 애니메이션 */
+.btn:hover,
+.contact-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+}
+
+/* 카드 호버 애니메이션 */
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
+}
+
+.video-container:hover {
+  transform: scale(1);
+  box-shadow: 0 15px 30px rgba(79, 70, 229, 0.4);
+}
+
+.audio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(79, 70, 229, 0.3);
+}
+
+.audio-card:hover .album-img {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.5);
+  border-color: rgba(79, 70, 229, 0.5);
+}
+
+/* 장르 태그 호버 애니메이션 */
+.genre-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(191, 0, 255, 0.7), 
+             inset 0 0 12px rgba(191, 0, 255, 0.5);
+}
+
+/* 스킬 태그 호버 애니메이션 */
+.skill-tag:hover {
+  transform: translateY(-3px);
+  background: rgba(79, 70, 229, 0.3);
+}
+
+/* 소셜 링크 호버 애니메이션 */
+.social-links a:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 네비게이션 바 애니메이션 */
+@keyframes moveNavIndicator {
+  from {
+    left: var(--nav-start);
+    width: var(--nav-start-width);
+  }
+  to {
+    left: var(--nav-end);
+    width: var(--nav-end-width);
+  }
+}
+
+/* 이동 애니메이션이 적용된 가상 요소 */
+.nav-indicator {
+  position: absolute;
+  height: 2px;
+  bottom: -5px;
+  background: linear-gradient(90deg, #4F46E5, #9333EA);
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  transform-origin: left;
+}
+
+/* 애니메이션 진행 중 클래스 */
+.nav-indicator.moving {
+  animation: moveNavIndicator 0.4s forwards cubic-bezier(0.65, 0, 0.35, 1);
+}

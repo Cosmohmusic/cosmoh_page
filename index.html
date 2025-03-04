@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COSMOH music - Composer</title>
+<<<<<<< HEAD
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Gugi&family=Do+Hyeon&family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Gugi&family=Do+Hyeon&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
   <!-- EmailJS Library -->
@@ -1249,18 +1250,37 @@ body {
 }
 
   </style>
+=======
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Gugi&family=Do+Hyeon&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- EmailJS Library -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+>>>>>>> fd47998 (최종)
 </head>
 <body class="lang-ko">
   <header>
     <div class="container">
       <nav>
         <div class="logo">COSMOH music</div>
+<<<<<<< HEAD
         <div style="display: flex; align-items: center;">
+=======
+        <div class="nav-container">
+>>>>>>> fd47998 (최종)
           <div class="nav-links">
             <a data-target="home" class="active" data-lang-ko="홈" data-lang-en="Home" data-lang-ja="ホーム">홈</a>
             <a data-target="portfolio" data-lang-ko="포트폴리오" data-lang-en="Portfolio" data-lang-ja="ポートフォリオ">포트폴리오</a>
             <a data-target="about" data-lang-ko="소개" data-lang-en="About" data-lang-ja="紹介">소개</a>
             <a data-target="contact" data-lang-ko="의뢰" data-lang-en="Request" data-lang-ja="依頼">의뢰</a>
+<<<<<<< HEAD
           </div>
           <div class="language-selector">
             <img src="assests/images/kr.png" alt="국기" class="language-flag" id="currentFlag">
@@ -1268,12 +1288,24 @@ body {
               <option value="ko" data-flag="assests/images/kr.png" data-flag-alt="한국 국기">한국어</option>
               <option value="en" data-flag="assests/images/us.png" data-flag-alt="미국 국기">English</option>
               <option value="ja" data-flag="assests/images/jp.png" data-flag-alt="일본 국기">日本語</option>
+=======
+            <div class="nav-indicator"></div>
+          </div>
+          <!-- 모바일에서는 언어 선택기가 하단으로 이동하므로 데스크톱에서만 보이도록 클래스 추가 -->
+          <div class="language-selector desktop-only">
+            <img src="assets/images/ko.png" alt="국기" class="language-flag" id="currentFlag">
+            <select id="languageSelect">
+              <option value="ko" data-flag="assets/images/ko.png" data-flag-alt="한국 국기">한국어</option>
+              <option value="en" data-flag="assets/images/us.png" data-flag-alt="미국 국기">English</option>
+              <option value="ja" data-flag="assets/images/jp.png" data-flag-alt="일본 국기">日本語</option>
+>>>>>>> fd47998 (최종)
             </select>
           </div>
         </div>
       </nav>
     </div>
   </header>
+<<<<<<< HEAD
     
     <!-- 홈 섹션 -->
     <section id="home" class="hero active">
@@ -1933,6 +1965,29 @@ body {
     </section>
     
     <!-- 포트폴리오 섹션 -->
+=======
+  
+  <!-- 홈 섹션 -->
+  <section id="home" class="section active">
+    <div class="container">
+      <img src="assets/images/Profile_image.png" alt="COSMOH 프로필" class="profile-img">
+      <h1 class="cosmoh-title">COSMOH</h1>
+      <h2 class="cosmoh-title" data-lang-ko="Composer" data-lang-en="Composer" data-lang-ja="コンポーザー">Composer</h2>
+      <p data-lang-ko="몰입감 있는 게임 환경을 위한 오케스트라, 일렉트로닉, 앰비언트 등 다양한 음악을 <span style='white-space: nowrap;'>작곡합니다.</span> 게임 속 감동을 선사하는 음악으로 플레이어의 경험을 한층 더 풍부하게 만들어 드립니다." 
+         data-lang-en="I compose a variety of music, including orchestral, electronic, and ambient, for an immersive gaming environment.<br>We enrich the player's experience with music that brings emotion to the game."
+         data-lang-ja="没入感のあるゲーム環境のためのオーケストラ、エレクトロニック、アンビエントなど様々な音楽を作曲します。<br>ゲーム内の感動を届ける音楽でプレイヤーの体験をより豊かにします。">
+      </p>
+      
+      <!-- 포트폴리오 보기 버튼 추가 -->
+      <a href="#" class="btn portfolio-btn" id="viewPortfolioBtn" 
+         data-lang-ko="포트폴리오 보기" 
+         data-lang-en="View Portfolio"
+         data-lang-ja="ポートフォリオを見る">포트폴리오 보기</a>
+    </div>
+  </section>
+  
+  <!-- 포트폴리오 섹션 -->
+>>>>>>> fd47998 (최종)
   <section id="portfolio" class="section">
     <div class="container">
       <h2 class="section-title" data-lang-ko="Portfolio" data-lang-en="Portfolio" data-lang-ja="ポートフォリオ">Portfolio</h2>
@@ -2030,7 +2085,11 @@ body {
       </div>
       
       <!-- 오리지널 게임 음악 섹션 -->
+<<<<<<< HEAD
       <h3 class="section-subtitle" data-lang-ko="다양한 컨셉의 테마" data-lang-en="Various concept themes" data-lang-ja="様々なコンセプトのテーマ" style="text-align: center; margin-top: 70px; margin-bottom: 40px; font-size: 32px;">다양한 컨셉의 테마</h3>
+=======
+      <h3 class="section-subtitle" data-lang-ko="다양한 컨셉의 테마" data-lang-en="Various concept themes" data-lang-ja="様々なコンセプトのテーマ">다양한 컨셉의 테마</h3>
+>>>>>>> fd47998 (최종)
       
       <!-- 오디오 카드 그리드 레이아웃 -->
       <div class="audio-grid">
@@ -2038,7 +2097,11 @@ body {
         <div class="audio-card glass-card">
           <div class="audio-card-content">
             <div class="album-art">
+<<<<<<< HEAD
               <img src="assests/images/albumart_a_shudder_of_fear.png" alt="전투 앨범아트" class="album-img">
+=======
+              <img src="assets/images/albumart_a_shudder_of_fear.png" alt="전투 앨범아트" class="album-img">
+>>>>>>> fd47998 (최종)
             </div>
             <div class="audio-info">
               <h3 data-lang-ko="A shudder of fear" data-lang-en="A shudder of fear" data-lang-ja="A shudder of fear">A shudder of fear</h3>
@@ -2051,7 +2114,11 @@ body {
               <p data-lang-ko="1:1 액션 게임에서의 긴장감 있는는 메인 테마" 
                  data-lang-en="A suspenseful main theme in 1:1 action games"
                  data-lang-ja="1:1 アクションゲームでの緊張感あるはメインテーマ">1:1 액션 게임에서의 긴장감 있는는 메인 테마</p>
+<<<<<<< HEAD
               <audio controls src="assests/audio/5.-전투씬-BGM.mp3" class="audio-player" controlsList="nodownload nospeed"></audio>
+=======
+              <audio controls src="assets/audio/5.-전투씬-BGM.mp3" class="audio-player" controlsList="nodownload nospeed"></audio>
+>>>>>>> fd47998 (최종)
             </div>
           </div>
         </div>
@@ -2060,10 +2127,17 @@ body {
         <div class="audio-card glass-card">
           <div class="audio-card-content">
             <div class="album-art">
+<<<<<<< HEAD
               <img src="assests/images/albumart_legacy_of_the_desert.png" alt="legacy of the desert 앨범아트" class="album-img">
             </div>
             <div class="audio-info">
               <h3 data-lang-ko="사막의 유산" data-lang-en="legacy of the desert" data-lang-ja="砂漠の遺産">사막의 유산산</h3>
+=======
+              <img src="assets/images/albumart_legacy_of_the_desert.png" alt="legacy of the desert 앨범아트" class="album-img">
+            </div>
+            <div class="audio-info">
+              <h3 data-lang-ko="사막의 유산" data-lang-en="legacy of the desert" data-lang-ja="砂漠の遺産">사막의 유산</h3>
+>>>>>>> fd47998 (최종)
               <div class="genre-container">
                 <span class="genre-tag" data-lang-ko="중동" data-lang-en="middle east" data-lang-ja="中東">중동</span>
                 <span class="genre-tag" data-lang-ko="웅장함" data-lang-en="grandeur" data-lang-ja="壮大な">웅장함</span>
@@ -2072,8 +2146,14 @@ body {
               </div>
               <p data-lang-ko="중동배경의 하이브리드와 오케스트라가 어우러진 테마" 
                  data-lang-en="A theme that combines a hybrid of a Middle Eastern background and an orchestra."
+<<<<<<< HEAD
                  data-lang-ja="中東背景のハイブリッドとオーケストラが調和したテーマ">중동배경의 하이브리드와 오케스트라가 어우러진 테마 </p>
               <audio controls src="assests/audio/6.-중동_사막-풍의-메인-타이틀-음악.mp3" class="audio-player" controlsList="nodownload nospeed"></audio>
+=======
+                 data-lang-ja="中東data-lang-en="A theme that combines a hybrid of a Middle Eastern background and an orchestra."
+                 data-lang-ja="中東背景のハイブリッドとオーケストラが調和したテーマ">중동배경의 하이브리드와 오케스트라가 어우러진 테마</p>
+              <audio controls src="assets/audio/6.-중동_사막-풍의-메인-타이틀-음악.mp3" class="audio-player" controlsList="nodownload nospeed"></audio>
+>>>>>>> fd47998 (최종)
             </div>
           </div>
         </div>
@@ -2082,7 +2162,11 @@ body {
         <div class="audio-card glass-card">
           <div class="audio-card-content">
             <div class="album-art">
+<<<<<<< HEAD
               <img src="assests/images/albumart_boss_battle.png" alt="Masked and Wild: D.D.D. 테마 앨범아트" class="album-img">
+=======
+              <img src="assets/images/albumart_boss_battle.png" alt="Masked and Wild: D.D.D. 테마 앨범아트" class="album-img">
+>>>>>>> fd47998 (최종)
             </div>
             <div class="audio-info">
               <h3 data-lang-ko="Masked and Wild: D.D.D." data-lang-en="Masked and Wild: D.D.D." data-lang-ja="Masked and Wild: D.D.D.">Masked and Wild: D.D.D.</h3>
@@ -2094,7 +2178,11 @@ body {
               <p data-lang-ko="커비 와일드 DDD 보스를 생각하고 만든 테마. 강렬한 타악기와 브라스가 특징" 
                  data-lang-en="A theme created with Kirby Wild DDD boss in mind. Features strong percussion instruments and brass"
                  data-lang-ja="カービーワイルドDDDボスを考えて作ったテーマ。強烈な打楽器とブラスが特徴">커비 와일드 DDD 보스를 생각하고 만든 테마. 강렬한 타악기와 브라스가 특징</p>
+<<<<<<< HEAD
               <audio controls src="assests/audio/커비-보스전.mp3" class="audio-player" controlsList="nodownload nospeed"></audio>
+=======
+              <audio controls src="assets/audio/커비-보스전.mp3" class="audio-player" controlsList="nodownload nospeed"></audio>
+>>>>>>> fd47998 (최종)
             </div>
           </div>
         </div>
@@ -2103,7 +2191,11 @@ body {
         <div class="audio-card glass-card">
           <div class="audio-card-content">
             <div class="album-art">
+<<<<<<< HEAD
               <img src="assests/images/albumart_run!.png" alt="Run! 앨범아트" class="album-img">
+=======
+              <img src="assets/images/albumart_run!.png" alt="Run! 앨범아트" class="album-img">
+>>>>>>> fd47998 (최종)
             </div>
             <div class="audio-info">
               <h3 data-lang-ko="Run!" data-lang-en="Run!" data-lang-ja="Run!">Run!</h3>
@@ -2111,17 +2203,26 @@ body {
                 <span class="genre-tag" data-lang-ko="신남" data-lang-en="excited" data-lang-ja="楽しい">신남</span>
                 <span class="genre-tag" data-lang-ko="일렉트로닉" data-lang-en="Electronic" data-lang-ja="エレクトロニック">일렉트로닉</span>
                 <span class="genre-tag" data-lang-ko="캐주얼" data-lang-en="Casual" data-lang-ja="カジュアル">캐주얼</span>
+<<<<<<< HEAD
                 <span class="genre-tag" data-lang-ko="칩튠" data-lang-en="Chiptune" data-lang-ja="
                 チップチューンチューン">칩튠</span>
+=======
+                <span class="genre-tag" data-lang-ko="칩튠" data-lang-en="Chiptune" data-lang-ja="チップチューン">칩튠</span>
+>>>>>>> fd47998 (최종)
               </div>
               <p data-lang-ko="주먹왕 랄프의 Sugar Rush 게임을 생각하고 만든 캐주얼 게임의 테마" 
                  data-lang-en="A casual game theme created with Wreck-It Ralph's Sugar Rush game in mind."
                  data-lang-ja="拳王ラルフのSugar Rushゲームを考えて作られたカジュアルゲームのテーマ">주먹왕 랄프의 Sugar Rush 게임을 생각하고 만든 캐주얼 게임의 테마</p>
+<<<<<<< HEAD
               <audio controls src="assests/audio/Run!.mp3" class="audio-player" controlsList="nodownload nospeed"></audio>
+=======
+              <audio controls src="assets/audio/Run!.mp3" class="audio-player" controlsList="nodownload nospeed"></audio>
+>>>>>>> fd47998 (최종)
             </div>
           </div>
         </div>
       </div>
+<<<<<<< HEAD
   </section>
     
     <!-- 소개 섹션 -->
@@ -2194,3 +2295,251 @@ body {
 </body>
 </html>
   
+=======
+    </div>
+  </section>
+  
+  <!-- 소개 섹션 -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang-ko="소개" data-lang-en="About" data-lang-ja="紹介">소개</h2>
+      
+      <div class="glass-card">
+        <div class="profile-container">
+          <img src="assets/images/Profile_image.png" alt="COSMOH 프로필" class="profile-img">
+          <h3 class="cosmoh-title">COSMOH</h3>
+        </div>
+        
+        <p data-lang-ko="단순한 배경음악이 아닌, 게임의 세계관과 캐릭터의 감정을 극대화하는 생명력 있는 사운드트랙 제작에 집중하고 있습니다.<br><br>음악은 게임을 비롯한 모든 콘텐츠의 영혼이며, 때로는 한 사람의 인생을 바꾸는 강렬한 경험이 되기도 합니다.<br>
+
+        제 음악은 플레이어가 게임 속에 몰입할 수 있도록 감각적인 멜로디와 다채로운 리듬을 결합해 깊이 있는 스토리텔링을 지원합니다.<br> 매 프로젝트마다 독창적인 접근 방식을 적용하여 게임의 분위기와 컨셉에 완벽히 부합하는 음악을 제작하기 위해 노력하고 있습니다.
+        
+        <br>또한, 최신 기술과 전통적인 음악 기법을 융합해 시대를 초월하는 감동과 에너지를 전달하는 작품을 선보이고 있습니다. 개발자 및 다양한 팀과의 긴밀한 협업을 통해 게임의 비전과 창의적인 아이디어가 완벽하게 구현될 수 있도록 최선을 다합니다.
+        
+        <br><br>혁신적이고 독창적인 사운드로 게임의 생명력을 극대화하며, 여러분의 프로젝트에 새로운 감동과 에너지를 불어넣을 준비가 되어 있습니다. 게임 개발자와 긴밀하게 협업하여 게임의 비전에 맞는 최적의 사운드트랙을 만듭니다. 음악은 게임 경험의 핵심 요소라고 믿으며, 플레이어의 감정을 움직이는 사운드트랙을 만드는 것이 저의 목표입니다." 
+           data-lang-en="I focus on creating vibrant soundtracks that maximize the game's worldview and character's emotions, not just background music. <br><br>Music is the soul of all content, including games, and sometimes it can be an intense experience that changes a person's life.
+
+           My music combines sensual melodies and colorful rhythms to help players immerse themselves in the game, supporting deep storytelling. I apply a unique approach to each project and strive to create music that perfectly matches the game's atmosphere and concept.
+           
+           I also present works that convey timeless emotions and energy by fusing the latest technology and traditional musical techniques. I work closely with developers and various teams to ensure that the game's vision and creative ideas are perfectly realized.
+           
+           I am ready to maximize the life of the game with innovative and unique sounds, and breathe new emotions and energy into your project. I work closely with game developers to create the best soundtrack that matches the game's vision. I believe that music is a key element of the game experience, and my goal is to create soundtracks that move players' emotions."
+           data-lang-ja="私は単なるバックグラウンドミュージックではなく、ゲームの世界観とキャラクターの感情を最大化する生命力のあるサウンドトラック制作に集中しています。
+
+           私の音楽は、プレイヤーがゲームに没頭できるように、感覚的なメロディーとカラフルなリズムを組み合わせて深いストーリーテリングをサポートします。プロジェクトごとに独自のアプローチを適用し、ゲームの雰囲気とコンセプトに完全に準拠した音楽を制作することに取り組んでいます。
+          
+           また、最新技術と伝統的な音楽技法を融合し、時代を超越する感動とエネルギーを伝える作品を披露しています。開発者やさまざまなチームとの緊密なコラボレーションにより、ゲームのビジョンと創造的なアイデアを完全に実装できるように最善を尽くします。
+          
+           革新的で独創的なサウンドでゲームの生命力を最大化し、あなたのプロジェクトに新しい感動とエネルギーを吹き込む準備ができています。ゲーム開発者と緊密に協力して、ゲームのビジョンに合った最適なサウンドトラックを作成します。音楽はゲーム体験の重要な要素であると信じており、プレイヤーの感情を動かすサウンドトラックを作ることが私の目標です。">단순한 배경음악이 아닌, 게임의 세계관과 캐릭터의 감정을 극대화하는 생명력 있는 사운드트랙 제작에 집중하고 있습니다.</p>
+      </div>
+      
+      <div class="glass-card">
+        <h3 data-lang-ko="기술 및 툴" data-lang-en="Skills & Tools" data-lang-ja="スキルとツール">기술 및 툴</h3>
+        <div class="skills-list">
+          <span class="skill-tag">Cubase</span>
+          <span class="skill-tag">Commercial Music</span>
+          <span class="skill-tag">Orchestration</span>
+          <span class="skill-tag">Electronic Music</span>
+          <span class="skill-tag">Sound Design</span>
+          <span class="skill-tag">Mixing & Mastering</span>
+        </div>
+      </div>
+      
+      <div class="glass-card">
+        <h3 data-lang-ko="SNS" data-lang-en="Contact" data-lang-ja="ソーシャル">SNS</h3>
+        <div class="social-links">
+          <a href="https://www.youtube.com/@cosmoh_music" target="_blank" title="YouTube">
+            <img src="assets/images/icon_youtube.png" alt="YouTube">
+          </a>
+          <a href="https://x.com/cosmohmusic" target="_blank" title="X">
+            <img src="assets/images/icon_x.png" alt="X">
+          </a>
+          <a href="https://www.instagram.com/your_instagram_account" target="_blank" title="Instagram">
+            <img src="assets/images/icon_instagram.png" alt="Instagram">
+          </a>
+          <span data-lang-ko="Email: pikaia556@gmail.com" data-lang-en="Email: pikaia556@gmail.com" data-lang-ja="Email: pikaia556@gmail.com">
+            Email: pikaia556@gmail.com
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 의뢰 섹션 -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang-ko="의뢰 및 문의" data-lang-en="Request & Inquiry" data-lang-ja="依頼と問い合わせ">의뢰 및 문의</h2>
+      <p class="section-desc" data-lang-ko="프로젝트에 대해 이야기하고 싶으신가요?<br>아래 양식을 작성해 주시거나 이메일 혹은 카카오톡으로 직접 연락해 주세요." 
+         data-lang-en="Want to talk about your project? Fill out the form below or contact me directly via email."
+         data-lang-ja="プロジェクトについて話し合いたいですか？以下のフォームに記入するか、メールで直接連絡してください。">프로젝트에 대해 이야기하고 싶으신가요? 아래 양식을 작성해 주시거나 이메일로 직접 연락해 주세요.</p>
+      
+      <div class="glass-card">
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name" data-lang-ko="이름" data-lang-en="Name" data-lang-ja="名前">이름</label>
+            <input type="text" id="name" name="name" placeholder="홍길동" 
+                   data-lang-placeholder-ko="홍길동" 
+                   data-lang-placeholder-en="John Doe"
+                   data-lang-placeholder-ja="山田太郎" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" data-lang-ko="이메일" data-lang-en="Email" data-lang-ja="メール">이메일</label>
+            <input type="email" id="email" name="email" placeholder="example@email.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone" data-lang-ko="SNS" data-lang-en="Contact" data-lang-ja="ソーシャル">SNS</label>
+            <input type="tel" id="phone" name="phone" placeholder="010-1234-5678"
+                   data-lang-placeholder-ko="010-1234-5678" 
+                   data-lang-placeholder-en="+1 123-456-7890"
+                   data-lang-placeholder-ja="090-1234-5678" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="project" data-lang-ko="프로젝트 유형" data-lang-en="Project Type" data-lang-ja="プロジェクトタイプ">프로젝트 유형</label>
+            <select id="project" name="project" required>
+              <option value="mobile" 
+                      data-lang-ko="모바일 게임" 
+                      data-lang-en="Mobile Game"
+                      data-lang-ja="モバイルゲーム">모바일 게임</option>
+              <option value="pc" 
+                      data-lang-ko="PC/콘솔 게임" 
+                      data-lang-en="PC/Console Game"
+                      data-lang-ja="PC/コンソールゲーム">PC/콘솔 게임</option>
+              <option value="ad" 
+                      data-lang-ko="광고음악" 
+                      data-lang-en="Ad Music"
+                      data-lang-ja="広告音楽">광고음악</option>
+              <option value="sound_design" 
+                      data-lang-ko="사운드디자인" 
+                      data-lang-en="Sound Design"
+                      data-lang-ja="サウンドデザイン">사운드디자인</option>
+              <option value="other" 
+                      data-lang-ko="기타" 
+                      data-lang-en="Other"
+                      data-lang-ja="その他">기타</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message" data-lang-ko="메시지" 
+                   data-lang-en="Message"
+                   data-lang-ja="メッセージ">메시지</label>
+            <textarea id="message" name="message" 
+                      placeholder="프로젝트에 대해 알려주세요. 게임 장르, 필요한 음악 스타일, 일정 등을 포함해 주시면 좋습니다." 
+                      data-lang-placeholder-ko="프로젝트에 대해 알려주세요. 게임 장르, 필요한 음악 스타일, 일정 등을 포함해 주시면 좋습니다." 
+                      data-lang-placeholder-en="Tell me about your project. It's helpful to include game genre, music style needed, and timeline."
+                      data-lang-placeholder-ja="プロジェクトについて教えてください。ゲームジャンル、必要な音楽スタイル、スケジュールなどを含めていただけると助かります。" required></textarea>
+          </div>
+          
+          <div class="form-submit-container">
+            <button type="submit" class="btn" id="submitBtn"
+                    data-lang-ko="보내기" 
+                    data-lang-en="Send"
+                    data-lang-ja="送信"
+                    data-lang-loading-ko="전송 중..."
+                    data-lang-loading-en="Sending..."
+                    data-lang-loading-ja="送信中...">보내기</button>  
+            <div class="error-message" id="errorMessage"
+                 data-lang-ko="메시지 전송에 실패했습니다. 다시 시도해주세요."
+                 data-lang-en="Failed to send message. Please try again."
+                 data-lang-ja="メッセージの送信に失敗しました。もう一度お試しください。"></div>
+          </div>
+        </form>
+      </div>
+      
+      <div class="contact-buttons">
+        <a href="https://open.kakao.com/o/COSMOH" class="contact-button">
+          <img src="assets/images/icon_kakaotalk.png" alt="카카오톡">
+          <span data-lang-ko="카카오톡으로 문의하기" data-lang-en="Contact via KakaoTalk" data-lang-ja="カカオトークで問い合わせる">카카오톡으로 문의하기</span>
+        </a>
+      </div>
+      
+      <div class="process-section">
+        <h3 class="subsection-title"
+           data-lang-ko="협업 프로세스" 
+           data-lang-en="Collaboration Process"
+           data-lang-ja="協業プロセス">협업 프로세스</h3>
+        <div class="process-grid">
+          <div class="glass-card process-card">
+            <div class="process-number">1</div>
+            <h4 data-lang-ko="컨셉 논의" 
+               data-lang-en="Concept Discussion"
+               data-lang-ja="コンセプト討議">컨셉 논의</h4>
+            <p data-lang-ko="게임의 분위기와 필요한 음악 스타일에 대해 논의합니다. 게임의 스토리와 감성에 맞는 음악 방향을 설정합니다." 
+               data-lang-en="We discuss the game's atmosphere and the required music style. We set a musical direction that matches the game's story and emotions."
+               data-lang-ja="ゲームの雰囲気と必要な音楽スタイルについて議論します。ゲームのストーリーと感性に合った音楽の方向性を設定します。">게임의 분위기와 필요한 음악 스타일에 대해 논의합니다. 게임의 스토리와 감성에 맞는 음악 방향을 설정합니다.</p>
+          </div>
+          
+          <div class="glass-card process-card">
+            <div class="process-number">2</div>
+            <h4 data-lang-ko="데모 작곡" 
+               data-lang-en="Demo Composition"
+               data-lang-ja="デモ作曲">데모 작곡</h4>
+            <p data-lang-ko="초기 버전을 작곡하고 피드백을 기반으로 수정합니다. 게임 개발 팀과 긴밀하게 소통하며 음악을 발전시킵니다." 
+               data-lang-en="I compose an initial version and revise based on feedback. I develop the music through close communication with the game development team."
+               data-lang-ja="初期バージョンを作曲し、フィードバックに基づいて修正します。ゲーム開発チームと緊密にコミュニケーションを取りながら音楽を発展させます。">초기 버전을 작곡하고 피드백을 기반으로 수정합니다. 게임 개발 팀과 긴밀하게 소통하며 음악을 발전시킵니다.</p>
+          </div>
+          
+          <div class="glass-card process-card">
+            <div class="process-number">3</div>
+            <h4 data-lang-ko="최종 납품" 
+               data-lang-en="Final Delivery"
+               data-lang-ja="最終納品">최종 납품</h4>
+            <p data-lang-ko="완성된 트랙을 제공합니다. 게임에 완벽하게 통합될 수 있도록 지원합니다." 
+               data-lang-en="I provide the completed tracks. I offer support to ensure perfect integration into your game."
+               data-lang-ja="完成したトラックを提供します。ゲームに完璧に統合されるようサポートします。">완성된 트랙을 제공합니다. 게임에 완벽하게 통합될 수 있도록 지원합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 모바일 언어 선택기 -->
+  <div class="language-container">
+    <div class="language-selector">
+      <img src="assets/images/ko.png" alt="국기" class="language-flag" id="mobileFlagIcon">
+      <select id="mobileLanguageSelect" class="mobile-language-select">
+        <option value="ko" data-flag="assets/images/ko.png" data-flag-alt="한국 국기">한국어</option>
+        <option value="en" data-flag="assets/images/us.png" data-flag-alt="미국 국기">English</option>
+        <option value="ja" data-flag="assets/images/jp.png" data-flag-alt="일본 국기">日本語</option>
+      </select>
+    </div>
+  </div>
+  
+  <!-- 팝업 메시지 -->
+  <div class="popup-overlay" id="popupOverlay"></div>
+  <div class="popup" id="messagePopup">
+    <button class="popup-close" id="popupClose">&times;</button>
+    <h3 data-lang-ko="메시지가 발송되었습니다!" 
+        data-lang-en="Message Sent Successfully!" 
+        data-lang-ja="メッセージが送信されました！">메시지가 발송되었습니다!</h3>
+    <p data-lang-ko="빠른 시일 내에 답변 드리겠습니다. 감사합니다." 
+       data-lang-en="I will get back to you as soon as possible. Thank you for your interest." 
+       data-lang-ja="早急にお返事いたします。ありがとうございます。">빠른 시일 내에 답변 드리겠습니다. 감사합니다.</p>
+  </div>
+  
+  <!-- 사이드 스크롤 인디케이터 -->
+  <div id="side-scroll-indicator">
+    <div class="scroll-dot active" data-section="home"></div>
+    <div class="scroll-dot" data-section="portfolio"></div>
+    <div class="scroll-dot" data-section="about"></div>
+    <div class="scroll-dot" data-section="contact"></div>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <p>© 2025 COSMOH Music. All rights reserved.</p>
+      <p class="designer-credit">Designed by COSMOH</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript 파일 -->
+  <script src="js/app.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/language.js"></script>
+  <script src="js/form.js"></script>
+</body>
+</html>
+>>>>>>> fd47998 (최종)

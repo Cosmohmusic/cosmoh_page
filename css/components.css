@@ -1,0 +1,265 @@
+/* components.css - 컴포넌트 스타일 */
+
+/* 비디오 카드 */
+.video-card {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+}
+
+.video-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: scale(0.95);
+  position: relative;
+  z-index: 1;
+  background: rgba(20, 20, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.video-container:hover {
+  transform: scale(1);
+  box-shadow: 0 15px 30px rgba(79, 70, 229, 0.4);
+  z-index: 2;
+  border-color: rgba(79, 70, 229, 0.4);
+}
+
+.video-info {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 12px 12px;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.video-container:hover .video-info {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(79, 70, 229, 0.4);
+}
+
+.video-info h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+
+iframe {
+  width: 100%;
+  height: 350px;
+  border: 0;
+}
+
+/* 오디오 카드 */
+.audio-card {
+  background: rgba(20, 20, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.audio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(79, 70, 229, 0.3);
+}
+
+.audio-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.album-art {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 20px 5px 20px;
+}
+
+.album-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(79, 70, 229, 0.3);
+  pointer-events: none;
+}
+
+.audio-card:hover .album-img {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.5);
+  border-color: rgba(79, 70, 229, 0.5);
+}
+
+.audio-info {
+  padding: 15px 20px 20px 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.audio-info h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: white;
+}
+
+.audio-info p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  opacity: 0.9;
+  flex-grow: 1;
+}
+
+.audio-player {
+  width: 100%;
+  margin-top: auto;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 폼 컴포넌트 */
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box; /* 추가: 패딩을 너비에 포함 */
+}
+
+.form-group select {
+  color: white;
+  appearance: none;
+}
+
+.form-group select option {
+  color: black;
+  background-color: white;
+}
+
+.form-group select option:checked {
+  color: white;
+  background-color: var(--secondary);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  outline: none;
+}
+
+.form-group textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+/* 문의 버튼 */
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-button:hover {
+  background-color: rgba(79, 70, 229, 0.2);
+  border-color: rgba(79, 70, 229, 0.5);
+  transform: translateY(-3px);
+}
+
+/* 카카오톡 버튼 아이콘 크기 조정 */
+.contact-button img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* 소셜 링크 */
+.social-links a img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-links a:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 스크롤 인디케이터 */
+.scroll-dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.scroll-dot.active {
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 홈 화면 스크롤 다운 인디케이터 */
+.home-scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  animation: bounce 2s infinite;
+  z-index: 10;
+}
+
+.home-scroll-indicator.hide {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.home-scroll-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 8px;
+}

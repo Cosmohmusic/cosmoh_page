@@ -1,0 +1,527 @@
+/* responsive.css - 반응형 디자인 스타일 */
+
+/* PC용 레이아웃 */
+@media (min-width: 992px) {
+  .videos-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  iframe {
+    height: 360px;
+  }
+  
+  .audio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* PC 버전에서 중복되는 언어 선택기 숨기기 */
+  .language-container {
+    display: none !important;
+  }
+  
+  /* PC 버전에서 사이드 스크롤 인디케이터 숨기기 */
+  #side-scroll-indicator {
+    display: none !important;
+  }
+}
+
+/* 태블릿용 레이아웃 */
+@media (min-width: 768px) and (max-width: 991px) {
+  iframe {
+    height: 450px;
+  }
+  
+  .audio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  #home h1 {
+    font-size: 52px;
+  }
+  
+  #home h2 {
+    font-size: 30px;
+  }
+  
+  #home p {
+    font-size: 20px;
+  }
+  
+  /* 태블릿에서도 중복되는 언어 선택기 숨기기 */
+  .language-container {
+    display: none !important;
+  }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  /* 바디 및 HTML 스크롤 조정 */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+  }
+  
+  body {
+    padding-bottom: 0;
+    position: static;
+  }
+  
+  /* 섹션 여백 및 높이 조정 */
+  .section, #home {
+    min-height: auto;
+    padding: 100px 0 50px; /* 상단 패딩 약간 줄임 */
+    margin-bottom: 0;
+  }
+  
+  /* 푸터 위치 조정 */
+  footer {
+    position: relative;
+    bottom: 0;
+    margin-top: 30px;
+    padding: 20px 0;
+    height: auto;
+  }
+  
+  /* 헤더 및 네비게이션 - 높이 축소 */
+  header {
+    padding: 10px 0; /* 패딩 줄임 */
+  }
+  
+  nav {
+    flex-direction: column;
+    gap: 8px; /* 간격 줄임 */
+  }
+  
+  /* 네비게이션 링크 간격 및 크기 조정 */
+  .nav-links {
+    gap: 25px; /* 간격 줄임 */
+    width: 100%; 
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  
+  .nav-links a {
+    font-size: 20px; /* 기본 글씨 크기 약간 줄임 */
+    padding: 8px 0; /* 상하 패딩 줄임 */
+    font-weight: 600;
+  }
+  
+  /* 언어별 네비게이션 글씨 크기 조정 */
+  body.lang-en .nav-links a {
+    font-size: 18px; /* 영어는 더 작게 */
+  }
+  
+  body.lang-ja .nav-links a {
+    font-size: 17px; /* 일본어는 더 작게 */
+  }
+  
+  /* LOGO 크기 조정 */
+  .logo {
+    font-size: 24px; /* 로고 크기 줄임 */
+  }
+  
+  /* 언어 선택기 위치 변경 - footer 위로 이동 */
+  .language-selector {
+    position: static;
+    margin: 30px auto 20px;
+    display: block;
+    text-align: center;
+  }
+
+  /* 언어 선택기 국기 표시 수정 */
+.language-selector {
+  margin-left: 20px;
+  position: relative;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.language-selector select {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: white;
+  padding: 6px 28px 6px 32px; /* 좌측 패딩 조정 - 국기와 텍스트 간격 조정 */
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.language-flag {
+  position: absolute;
+  width: 20px;
+  height: 16px;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 5;
+  display: block;
+}
+
+/* 의뢰 탭 텍스트 중앙 정렬 */
+#contact .section-desc {
+  text-align: center !important;
+  margin: 0 auto 40px;
+  max-width: 700px;
+}
+
+/* 모바일에서 카카오톡 버튼 레이아웃 수정 */
+@media (max-width: 768px) {
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+  
+  .contact-button {
+    width: 80%;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0;
+    text-align: center;
+  }
+  
+  /* 모바일에서 의뢰 탭 텍스트 중앙 정렬 강제 적용 */
+  #contact p.section-desc {
+    text-align: center !important;
+    font-size: 16px;
+  }
+  
+  /* 카카오톡 아이콘 크기 조정 */
+  .contact-button img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+}
+
+/* 모바일에서 언어 선택기 수정 */
+@media (max-width: 768px) {
+  .language-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  
+  .language-selector {
+    position: relative;
+    margin: 0 auto;
+    display: inline-block;
+  }
+  
+  .language-selector::after {
+    content: '▼';
+    font-size: 10px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 5;
+  }
+  
+  .language-flag {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    display: block;
+    width: 20px;
+    height: 16px;
+  }
+  
+  /* 모바일 언어 선택기 스타일 개선 */
+  #mobileLanguageSelect {
+    min-width: 120px;
+    text-indent: 10px;
+  }
+}
+  
+  /* 푸터 위에 언어 선택기 배치를 위한 컨테이너 */
+  .language-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  
+  /* 데스크톱 전용 요소 숨기기 */
+  .desktop-only {
+    display: none !important;
+  }
+  
+  /* 타이틀 및 텍스트 */
+  .section-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+    margin-top: 20px;
+  }
+  
+  .section-subtitle {
+    font-size: 26px !important;
+    margin-top: 40px !important;
+    margin-bottom: 25px !important;
+  }
+  
+  #home h1 {
+    font-size: 38px;
+    margin-bottom: 15px;
+  }
+  
+  #home h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  #home p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+  }
+  
+  /* 포트폴리오 및 섹션 그리드 */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  /* 비디오 및 카드 조정 */
+  iframe {
+    height: 220px;
+  }
+  
+  .video-info h3, .audio-info h3 {
+    font-size: 18px;
+  }
+  
+  .genre-tag {
+    font-size: 12px;
+    padding: 5px 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .video-info p, .audio-info p {
+    font-size: 14px;
+  }
+  
+  /* 모바일용 텍스트 정렬 유지 */
+  #contact h3 {
+    text-align: left;
+    font-size: 20px;
+  }
+  
+  #contact p {
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  /* COSMOH 제목 중앙 정렬 */
+  #about .profile-container {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  #about .profile-container h3.cosmoh-title {
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
+  
+  /* 기술 및 툴, SNS 섹션 헤딩 중앙 정렬 */
+  #about .glass-card h3 {
+    text-align: center !important;
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  /* 스킬 리스트는 이미 중앙 정렬되어 있음 */
+  
+  /* 소셜 링크 컨테이너도 중앙 정렬 */
+  #about .social-links {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  #about .glass-card p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* 카드 및 폼 컴포넌트 */
+  .glass-card {
+    padding: 20px 15px;
+    margin: 15px 0;
+  }
+  
+  .contact-form {
+    max-width: 100%;
+  }
+  
+  #contact .form-group label {
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 16px;
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .form-group textarea {
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* 더 작은 화면에서는 더 작게 */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px;
+  }
+  
+  .form-group textarea {
+    min-height: 100px;
+  }
+  
+  #contact .process-card h4 {
+    text-align: left;
+    font-size: 18px;
+  }
+  
+  #contact .process-card p {
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  /* 언어별 폰트 크기 조정 */
+  body.lang-ko {
+    font-size: 16px;
+  }
+  
+  body.lang-en {
+    font-size: 16px;
+  }
+  
+  body.lang-ja {
+    font-size: 15px;
+  }
+  
+  /* 메뉴 크기 더 줄이기 */
+  .nav-links a {
+    font-size: 18px;
+    padding: 6px 0;
+  }
+  
+  body.lang-en .nav-links a {
+    font-size: 16px;
+  }
+  
+  body.lang-ja .nav-links a {
+    font-size: 15px;
+  }
+  
+  .logo {
+    font-size: 22px;
+  }
+  
+  /* 헤더 패딩 더 줄임 */
+  header {
+    padding: 8px 0;
+  }
+  
+  nav {
+    gap: 6px;
+  }
+  
+  /* 섹션 패딩 조정 */
+  .section, #home {
+    padding-top: 85px; /* 헤더 크기 줄임에 맞춰 섹션 패딩도 줄임 */
+  }
+  
+  .language-selector select {
+    font-size: 15px;
+    padding: 8px 28px 8px 32px;
+  }
+  
+  /* 오디오 카드 조정 */
+  .audio-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .audio-card-content {
+    flex-direction: column;
+  }
+  
+  .album-art {
+    width: 100%;
+    padding: 15px 15px 0 15px;
+  }
+  
+  .album-img {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .audio-info {
+    padding: 15px;
+  }
+  
+  /* 스크롤 인디케이터 조정 */
+  .home-scroll-indicator {
+    bottom: 20px;
+  }
+  
+  .home-scroll-arrow span {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* 사이드 스크롤 인디케이터 숨기기 */
+  #side-scroll-indicator {
+    display: none;
+  }
+  
+  /* 포트폴리오 버튼 조정 */
+  .portfolio-btn {
+    padding: 12px 30px;
+    font-size: 18px;
+    margin-top: 15px;
+  }
+  
+  /* 컨테이너 패딩 조정 */
+  .container {
+    padding: 0 15px;
+  }
+  
+  /* 네비게이션 인디케이터 위치 조정 */
+  .nav-indicator {
+    height: 2px;
+    bottom: -5px;
+  }
+}
